@@ -28,8 +28,6 @@ class App extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.addNewEvent = this.addNewEvent.bind(this);
     this.getTrip = this.getTrip.bind(this);
-    this.handleID = this.handleID.bind(this);
-    this.handleName = this.handleName.bind(this);
     this.onLookupEnter = this.onLookupEnter.bind(this);
     this.onCreateDaySelect = this.onCreateDaySelect.bind(this);
     this.onCreateEnter = this.onCreateEnter.bind(this);
@@ -52,6 +50,7 @@ class App extends React.Component {
       setId,
       setDays,
     } = this.props;
+    
     const start = moment(startDate);
     const end = moment(endDate);
     const timelineId = shortid.generate();
@@ -103,15 +102,6 @@ class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
-  }
-
-  handleID(e) {
-    const { setId } = this.props;
-    setId(e.target.value);
-  }
-
-  handleName(e) {
-    this.props.onInputChange('timelineName', e.target.value);
   }
 
   handleNewEvent(e) {
@@ -176,8 +166,7 @@ class App extends React.Component {
           </button>
         </div>
         <CreateEventBox
-          timelineId={timelineId}
-          numberOfDays={numberOfDays}
+          {...this.props}
           onCreateDaySelect={this.onCreateDaySelect}
           onCreateEnter={this.onCreateEnter}
           createEventDay={this.state.createEventDay}
@@ -186,9 +175,8 @@ class App extends React.Component {
           createEvent={this.createEvent}
         />
         <TimelineLookUp
+          {...this.props}
           getTrip={this.getTrip}
-          handleID={this.handleID}
-          handleName={this.handleName}
           onLookupEnter={this.onLookupEnter}
         />
         <Timeline timelineData={this.state.timelineData} timelineId={timelineId} />
