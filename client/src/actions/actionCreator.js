@@ -36,3 +36,8 @@ export const setDays = days => ({
   type: 'SET_DAYS',
   days,
 });
+
+export const onCreateDaySelect = days => ({
+  type: 'CREATE_DAY_SELECT',
+  days,
+});

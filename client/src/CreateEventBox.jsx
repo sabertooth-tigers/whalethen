@@ -40,7 +40,7 @@ const CreateEventBox = (props) => {
         </span>
 
         <span>
-          <select className="selectDays" onChange={onCreateDaySelect}>
+          <select className="selectDays" onChange={({ target }) => onCreateDaySelect(target.value)}>
             {daysArr.map(day => <option value={day} key={day}>{day}</option>)}
           </select>
         </span>

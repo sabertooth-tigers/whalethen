@@ -18,27 +18,18 @@ class App extends React.Component {
     super();
     this.state = {
       timelineData: [],
-      createEventDay: '',
       newEvent: '',
       newEventAddress: '',
     };
-
-    console.log(actionCreators);
 
     this.onSubmit = this.onSubmit.bind(this);
     this.addNewEvent = this.addNewEvent.bind(this);
     this.getTrip = this.getTrip.bind(this);
     this.onLookupEnter = this.onLookupEnter.bind(this);
-    this.onCreateDaySelect = this.onCreateDaySelect.bind(this);
     this.onCreateEnter = this.onCreateEnter.bind(this);
     this.handleNewEvent = this.handleNewEvent.bind(this);
     this.handleNewAddress = this.handleNewAddress.bind(this);
     this.createEvent = this.createEvent.bind(this);
-  }
-  componentDidMount() {
-    // on init function to make get request to server
-    // temp using 1234 as the timelineId and test as timelineName
-    // this.getTrip();
   }
 
   onSubmit(event) {
@@ -72,14 +63,6 @@ class App extends React.Component {
     if (event.key === 'Enter') {
       this.createEvent();
     }
-  }
-
-  onCreateDaySelect(e) {
-    // this.props.createEventDay(e.target.value)
-    // ACTION: 'CREATE_EVENT_DAY'
-    this.setState({
-      createEventDay: e.target.value,
-    });
   }
 
   onLookupEnter(event) {
@@ -119,6 +102,7 @@ class App extends React.Component {
   addNewEvent(event, selectedDay) {
     const { timelineId, timelineName } = this.props;
     const day = Number(selectedDay.slice(4));
+
     axios.post('/entry', {
       event,
       timelineId,
@@ -135,7 +119,7 @@ class App extends React.Component {
       address: this.state.newEventAddress,
       votes: 0,
     };
-    this.addNewEvent(eventObj, this.state.createEventDay);
+    this.addNewEvent(eventObj, this.props.createEventDay);
   }
 
   render() {
@@ -167,9 +151,8 @@ class App extends React.Component {
         </div>
         <CreateEventBox
           {...this.props}
-          onCreateDaySelect={this.onCreateDaySelect}
           onCreateEnter={this.onCreateEnter}
-          createEventDay={this.state.createEventDay}
+          createEventDay={this.props.createEventDay}
           handleNewEvent={this.handleNewEvent}
           handleNewAddress={this.handleNewAddress}
           createEvent={this.createEvent}

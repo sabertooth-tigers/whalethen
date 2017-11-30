@@ -36,8 +36,13 @@ const appState = (state = {}, action) => {
       };
     case 'SET_DAYS':
       return {
-      	...state,
-      	numberOfDays: action.days,
+        ...state,
+        numberOfDays: action.days,
+      };
+    case 'CREATE_DAY_SELECT':
+      return {
+        ...state,
+        createEventDay: action.days,
       };
     default:
       return state;
