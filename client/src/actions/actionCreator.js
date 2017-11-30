@@ -27,7 +27,12 @@ export const generateId = () => ({
   type: 'GENERATE_ID',
 });
 
-export const setId = (id) => ({
+export const setId = id => ({
   type: 'SET_ID',
   id,
+});
+
+export const setDays = days => ({
+  type: 'SET_DAYS',
+  days,
 });

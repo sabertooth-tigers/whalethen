@@ -34,6 +34,11 @@ const appState = (state = {}, action) => {
         ...state,
         timelineId: action.id,
       };
+    case 'SET_DAYS':
+      return {
+      	...state,
+      	numberOfDays: action.days,
+      };
     default:
       return state;
   }
