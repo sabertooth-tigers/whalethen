@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './src/App';
 import { Provider } from 'react-redux';
 
-import store, { history } from './src/store';
+import store from './src/store';
 
 const Main = () => (
 	<Provider store={store}>

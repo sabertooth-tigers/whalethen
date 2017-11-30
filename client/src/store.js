@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 
 import rootReducer from './reducers/index';
 
-const state = {
+const appState = {
   timelineData: [],
   timelineName: 'testTimeline', // temp until we get some more data built up
   startDate: '',
@@ -18,7 +18,9 @@ const state = {
   newEventAddress: '',
 };
 
-const store = createStore(rootReducer, state);
+const state = {
+	appState,
+};
 
 if (module.hot) {
   module.hot.accept('./reducers/', () => {
@@ -27,4 +29,4 @@ if (module.hot) {
   });
 }
 
-export default store;
+export default createStore(rootReducer, state);

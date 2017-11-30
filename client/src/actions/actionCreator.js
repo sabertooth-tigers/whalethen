@@ -16,3 +16,23 @@ export const incrementVote = () => ({
 export const decrementVote = () => ({
   type: 'DECREMENT_VOTE',
 });
+
+export const onInputChange = (name, value) => ({
+  type: 'ON_INPUT_CHANGE',
+  name,
+  value,
+});
+
+export const generateId = () => ({
+  type: 'GENERATE_ID',
+});
+
+export const setId = id => ({
+  type: 'SET_ID',
+  id,
+});
+
+export const setDays = days => ({
+  type: 'SET_DAYS',
+  days,
+});
