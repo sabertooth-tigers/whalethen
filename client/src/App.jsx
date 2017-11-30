@@ -14,40 +14,6 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from './actions/actionCreator';
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.onSubmit = this.onSubmit.bind(this);
-    this.addNewEvent = this.addNewEvent.bind(this);
-    this.getTrip = this.getTrip.bind(this);
-    this.createEvent = this.createEvent.bind(this);
-  }
-
-  onSubmit(event) {
-    if (event && event.key !== 'Enter') { return; }
-    const {
-      startDate,
-      endDate,
-      timelineName,
-      setId,
-      setDays,
-    } = this.props;
-    
-    const start = moment(startDate);
-    const end = moment(endDate);
-    const timelineId = shortid.generate();
-    const numberOfDays = end.diff(start, 'days');
-    setId(timelineId);
-    setDays(numberOfDays);
-
-    axios.post('/timeline', {
-      timelineId,
-      timelineName,
-      numberOfDays,
-    })
-      .then(() => this.getTrip())
-      .catch(err => console.error('error in submit ', err));
-  }
 
   getTrip(event) {
     if (event && event.key === 'Enter') { return; }
@@ -91,7 +57,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { timelineName, timelineId, numberOfDays } = this.props;
+    const { timelineName, timelineId, numberOfDays, saveTimelineToDatabase } = this.props;
+    const saveTimeline = saveTimelineToDatabase.bind(this);
+    this.addNewEvent = this.addNewEvent.bind(this);
+    this.getTrip = this.getTrip.bind(this);
+    this.createEvent = this.createEvent.bind(this);
 
     return (
       <div className="App">
@@ -99,30 +69,17 @@ class App extends React.Component {
         <div className="container timelineParams">
           <div className="label">{timelineName}</div>
           <div className="label">{timelineId}</div>
-
-          <TimelineInputBox
-            {...this.props}
-            onSubmit={this.onSubmit}
-          />
+          <TimelineInputBox {...this.props} onSubmit={saveTimelineToDatabase} getTrip={this.getTrip} />
           <StartDateBox {...this.props} />
           <EndDateBox {...this.props} />
-          <button className="scheduleSubmit" onClick={() => this.onSubmit()}>
+          <button className="scheduleSubmit" onClick={() => saveTimelineToDatabase(null, this.props, this.getTrip)}>
             New Schedule
           </button>
         </div>
-        <CreateEventBox
-          {...this.props}
-          createEvent={this.createEvent}
-        />
-        <TimelineLookUp
-          {...this.props}
-          onLookupEnter={this.onLookupEnter}
-        />
+        <CreateEventBox {...this.props} createEvent={this.createEvent} />
+        <TimelineLookUp {...this.props} />
         <Timeline {...this.props} />
-        <Search
-          {...this.props}
-          addNewEvent={this.addNewEvent}
-        />
+        <Search {...this.props} addNewEvent={this.addNewEvent} />
       </div>
     );
   }
