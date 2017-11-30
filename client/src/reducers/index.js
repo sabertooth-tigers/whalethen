@@ -11,20 +11,10 @@ const appState = (state = {}, action) => {
         ...state,
         [action.name]: action.value,
       };
-    case 'SET_TIMELINE_NAME':
-      return {
-        ...state,
-        timelineName: action.timelineName,
-      };
     case 'SET_TIMELINE_DATA':
       return {
         ...state,
         timelineData: action.data,
-      };
-    case 'GENERATE_ID':
-      return {
-        ...state,
-        timelineId: shortid.generate(),
       };
     case 'SET_ID':
       return {

@@ -18,7 +18,7 @@ const TimelineLookUp = (props) => {
         name="timelineLookUp"
         onChange={({ target }) => setId(target.value)}
         placeholder="enter ID"
-        onKeyUp={event => onLookupEnter(event)}
+        onKeyUp={event => getTrip(event)}
       />
       <button className="searchSubmit" onClick={getTrip}>Search ID</button>
       </label>

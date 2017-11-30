@@ -20,8 +20,6 @@ class App extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.addNewEvent = this.addNewEvent.bind(this);
     this.getTrip = this.getTrip.bind(this);
-    this.onLookupEnter = this.onLookupEnter.bind(this);
-    this.onCreateEnter = this.onCreateEnter.bind(this);
     this.createEvent = this.createEvent.bind(this);
   }
 
@@ -49,19 +47,6 @@ class App extends React.Component {
     })
       .then(() => this.getTrip())
       .catch(err => console.error('error in submit ', err));
-  }
-
-
-  onCreateEnter(event) {
-    if (event.key === 'Enter') {
-      this.createEvent();
-    }
-  }
-
-  onLookupEnter(event) {
-    if (event.key === 'Enter') {
-      this.getTrip();
-    }
   }
 
   getTrip(event) {
@@ -127,13 +112,10 @@ class App extends React.Component {
         </div>
         <CreateEventBox
           {...this.props}
-          onCreateEnter={this.onCreateEnter}
-          createEventDay={this.props.createEventDay}
           createEvent={this.createEvent}
         />
         <TimelineLookUp
           {...this.props}
-          getTrip={this.getTrip}
           onLookupEnter={this.onLookupEnter}
         />
         <Timeline {...this.props} />
