@@ -3,7 +3,10 @@ import axios from 'axios';
 import propTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import SearchList from './SearchList';
+<<<<<<< HEAD
 import Data from '../../sampleData';
+=======
+>>>>>>> Small testing set up for redux
 
 class Search extends React.Component {
   constructor(props) {
@@ -11,7 +14,11 @@ class Search extends React.Component {
     this.state = {
       locationSearch: '',
       termBar: '',
+<<<<<<< HEAD
       searchList: Data.sampleData,
+=======
+      searchList: [],
+>>>>>>> Small testing set up for redux
       selectedDay: '',
     };
 
@@ -61,7 +68,10 @@ class Search extends React.Component {
         />
         <div className="scrollbox">
           <SearchList
+<<<<<<< HEAD
             {...this.props}
+=======
+>>>>>>> Small testing set up for redux
             searchList={this.state.searchList}
             numberOfDays={this.props.numberOfDays}
             addNewEvent={this.props.addNewEvent}

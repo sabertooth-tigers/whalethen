@@ -1,10 +1,15 @@
 /* eslint-disable */
 describe('App', () => {
 
-  it('Should show a passing test', () => {
+  xit('Should show a passing test', () => {
     expect(true).to.be.true;
   });
-  it('Should show a failing test', () => {
+  xit('Should show a failing test', () => {
     expect(true).to.be.false;
   });
+
+  xit('Should be a stateful component', () => {
+    expect('').to.be.true;
+  })
+
 });
