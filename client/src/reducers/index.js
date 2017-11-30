@@ -4,18 +4,6 @@ import voting from './voting';
 import events from './events';
 import shortid from 'shortid';
 
-// const state = {
-//   timelineData: [],
-//   timelineName: 'testTimeline', // temp until we get some more data built up
-//   startDate: '',
-//   endDate: '',
-//   numberOfDays: 0,
-//   timelineId: 'S1nnbsNlG', // temp until we get a way to produce these
-//   createEventDay: '',
-//   newEvent: '',
-//   newEventAddress: '',
-// };
-
 const appState = (state = {}, action) => {
   switch (action.type) {
     case 'ON_INPUT_CHANGE':
@@ -23,11 +11,20 @@ const appState = (state = {}, action) => {
         ...state,
         [action.name]: action.value,
       };
-    case 'GENERATE_ID':
-      const id = shortid.generate();
+    case 'SET_TIMELINE_NAME':
       return {
         ...state,
-        timelineId: id,
+        timelineName: action.timelineName,
+      };
+    case 'SET_TIMELINE_DATA':
+      return {
+        ...state,
+        timelineData: action.data,
+      };
+    case 'GENERATE_ID':
+      return {
+        ...state,
+        timelineId: shortid.generate(),
       };
     case 'SET_ID':
       return {
@@ -43,6 +40,16 @@ const appState = (state = {}, action) => {
       return {
         ...state,
         createEventDay: action.days,
+      };
+    case 'SET_NEW_EVENT':
+      return {
+        ...state,
+        newEvent: action.event,
+      };
+    case 'SET_NEW_EVENT_ADDRESS':
+      return {
+        ...state,
+        newEventAddress: action.address,
       };
     default:
       return state;

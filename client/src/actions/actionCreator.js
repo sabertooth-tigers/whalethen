@@ -41,3 +41,18 @@ export const onCreateDaySelect = days => ({
   type: 'CREATE_DAY_SELECT',
   days,
 });
+
+export const setTimelineData = data => ({
+  type: 'SET_TIMELINE_DATA',
+  data,
+});
+
+export const setNewEvent = event => ({
+  type: 'SET_NEW_EVENT',
+  event,
+});
+
+export const setNewEventAddress = address => ({
+  type: 'SET_NEW_EVENT_ADDRESS',
+  address,
+});

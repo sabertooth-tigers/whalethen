@@ -16,19 +16,12 @@ import * as actionCreators from './actions/actionCreator';
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {
-      timelineData: [],
-      newEvent: '',
-      newEventAddress: '',
-    };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.addNewEvent = this.addNewEvent.bind(this);
     this.getTrip = this.getTrip.bind(this);
     this.onLookupEnter = this.onLookupEnter.bind(this);
     this.onCreateEnter = this.onCreateEnter.bind(this);
-    this.handleNewEvent = this.handleNewEvent.bind(this);
-    this.handleNewAddress = this.handleNewAddress.bind(this);
     this.createEvent = this.createEvent.bind(this);
   }
 
@@ -71,32 +64,19 @@ class App extends React.Component {
     }
   }
 
-  getTrip() {
-    const { timelineId, setId, setDays, onInputChange } = this.props;
+  getTrip(event) {
+    if (event && event.key === 'Enter') { return; }
+
+    const { timelineId, setId, setDays, onInputChange, setTimelineData } = this.props;
 
     axios.get(`/timeline/${timelineId}`)
       .then(({ data }) => {
-        console.log(data);
         onInputChange('timelineName', data[0].timelineName);
         setId(data[0].timelineId);
         setDays(data.length);
-        this.setState({
-          timelineData: data,
-        });
+        setTimelineData(data);
       })
       .catch(err => console.error(err));
-  }
-
-  handleNewEvent(e) {
-    this.setState({
-      newEvent: e.target.value,
-    });
-  }
-
-  handleNewAddress(e) {
-    this.setState({
-      newEventAddress: e.target.value,
-    });
   }
 
   addNewEvent(event, selectedDay) {
@@ -113,10 +93,13 @@ class App extends React.Component {
       .catch(err => console.error('add event error: ', err));
   }
 
-  createEvent() {
+  createEvent(event) {
+    if (event && event.key === 'Enter') { return; }
+
+    const { newEvent, newEventAddress } = this.props;
     const eventObj = {
-      name: this.state.newEvent,
-      address: this.state.newEventAddress,
+      name: newEvent,
+      address: newEventAddress,
       votes: 0,
     };
     this.addNewEvent(eventObj, this.props.createEventDay);
@@ -136,16 +119,9 @@ class App extends React.Component {
             {...this.props}
             onSubmit={this.onSubmit}
           />
-          <StartDateBox
-            {...this.props}
-          />
-          <EndDateBox
-            {...this.props}
-          />
-          <button
-            className="scheduleSubmit"
-            onClick={() => this.onSubmit()}
-          >
+          <StartDateBox {...this.props} />
+          <EndDateBox {...this.props} />
+          <button className="scheduleSubmit" onClick={() => this.onSubmit()}>
             New Schedule
           </button>
         </div>
@@ -153,8 +129,6 @@ class App extends React.Component {
           {...this.props}
           onCreateEnter={this.onCreateEnter}
           createEventDay={this.props.createEventDay}
-          handleNewEvent={this.handleNewEvent}
-          handleNewAddress={this.handleNewAddress}
           createEvent={this.createEvent}
         />
         <TimelineLookUp
@@ -162,9 +136,9 @@ class App extends React.Component {
           getTrip={this.getTrip}
           onLookupEnter={this.onLookupEnter}
         />
-        <Timeline timelineData={this.state.timelineData} timelineId={timelineId} />
+        <Timeline {...this.props} />
         <Search
-          numberOfDays={numberOfDays}
+          {...this.props}
           addNewEvent={this.addNewEvent}
         />
       </div>

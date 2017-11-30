@@ -6,8 +6,8 @@ const CreateEventBox = (props) => {
     numberOfDays,
     onCreateDaySelect,
     onCreateEnter,
-    handleNewEvent,
-    handleNewAddress,
+    setNewEvent,
+    setNewEventAddress,
     createEvent,
   } = props;
 
@@ -25,7 +25,7 @@ const CreateEventBox = (props) => {
             type="text"
             name="createEventName"
             placeholder="enter an event"
-            onChange={handleNewEvent}
+            onChange={({ target }) => setNewEvent(target.value)}
           />
         </span>
         <span>
@@ -34,13 +34,13 @@ const CreateEventBox = (props) => {
             type="text"
             name="createEventAddress"
             placeholder="enter an address"
-            onChange={handleNewAddress}
+            onChange={({ target }) => setNewEventAddress(target.value)}
             onKeyUp={event => onCreateEnter(event)}
           />
         </span>
 
         <span>
-          <select className="selectDays" onChange={({ target }) => onCreateDaySelect(target.value)}>
+          <select className="selectDays" onChange={({ target }) => onCreateDaySelect(target.value )}>
             {daysArr.map(day => <option value={day} key={day}>{day}</option>)}
           </select>
         </span>
