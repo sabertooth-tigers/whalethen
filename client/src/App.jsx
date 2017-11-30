@@ -94,7 +94,7 @@ class App extends React.Component {
   }
 
   getTrip() {
-    axios.get(`/timeline/${this.state.timelineName}/${this.state.timelineId}`)
+    axios.get(`/timeline/${this.state.timelineId}`)
       .then(({ data }) => {
         this.setState({
           timelineData: data,
@@ -158,11 +158,6 @@ class App extends React.Component {
         <div className="container timelineParams">
           <div className="label">{this.state.timelineName}</div>
           <div className="label">{this.state.timelineId}</div>
-
-          <TimelineInputBox
-            onInput={this.onInputChange}
-            onEnter={this.onEnter}
-          />
           <StartDateBox
             onInput={this.onInputChange}
             onEnter={this.onEnter}
@@ -204,12 +199,12 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   vote: state.vote,
   events: state.events,
   numberOfDays: state.numberOfDays,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(actionCreators, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

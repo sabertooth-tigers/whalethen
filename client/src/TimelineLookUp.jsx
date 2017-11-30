@@ -21,14 +21,6 @@ const TimelineLookUp = (props) => {
         placeholder="enter ID"
         onKeyUp={event => onLookupEnter(event)}
       />
-        <input
-          id="timelineLookUp"
-          type="text"
-          name="timelineLookUp"
-          onChange={handleName}
-          onKeyUp={event => onLookupEnter(event)}
-          placeholder="enter Name"
-        />
         <button className="searchSubmit" onClick={getTrip}>Search ID</button>
       </label>
     </div>
