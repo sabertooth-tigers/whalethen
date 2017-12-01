@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // ADD_EVENT
 export const addEvent = event => ({
   type: 'ADD_EVENT',
@@ -59,8 +61,24 @@ export const saveTimeline = (event, getTrip) => ({
   getTrip,
 });
 
-export const addNewEvent = (event, getTrip) => ({
-  type: 'ADD_NEW_EVENT',
-  event,
-  getTrip,
-});
+export const getTrip = timelineId => dispatch =>
+  axios(`/timeline/${timelineId}`)
+    .then(({ data }) => dispatch({
+      type: 'GET_TRIP',
+      data,
+    }))
+    .catch(({ error }) => dispatch({
+      type: 'GET_TRIP_FAILURE',
+      error,
+    }));
+
+export const saveEvent = (event, { timelineId, timelineName, createEventDay }) => dispatch =>
+  axios.post('/entry', {
+    event,
+    timelineId,
+    day: Number(createEventDay.slice(4)),
+    timelineName,
+  })
+    .then(() => getTrip(timelineId))
+    .then(dispatch)
+    .catch(err => console.error('add event error: ', err));

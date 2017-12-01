@@ -8,6 +8,8 @@ const TimelineLookUp = (props) => {
     setId,
   } = props;
 
+  const isEnter = (key, value) => key === 'Enter' ? getTrip(value) : 1;
+
   return (
     <div className="inputBox">
       <label className="timelineLookUp label" htmlFor="timelineLookUp">
@@ -18,7 +20,7 @@ const TimelineLookUp = (props) => {
         name="timelineLookUp"
         onChange={({ target }) => setId(target.value)}
         placeholder="enter ID"
-        onKeyUp={event => getTrip(event)}
+        onKeyUp={({ key, target }) => isEnter(key, target.value)}
       />
       <button className="searchSubmit" onClick={() => getTrip()}>Search ID</button>
       </label>

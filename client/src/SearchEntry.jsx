@@ -31,7 +31,7 @@ const SearchListEntry = (props) => {
       <div>
         <button
           className="addEvent"
-          onClick={() => addNewEvent(event, getTrip, selectedDay)}
+          onClick={() => addNewEvent(event, getTrip)}
         >
             Add Event
         </button>

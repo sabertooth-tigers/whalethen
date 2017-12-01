@@ -12,9 +12,12 @@ const CreateEventBox = (props) => {
     createEventDay,
     addNewEvent,
     getTrip,
+    saveEvent,
   } = props;
 
   const daysArr = ['Choose Day'];
+  const isEnter = (key, value) => key === 'Enter' ? getTrip(value) : 1;
+
   for (let i = 1; i <= numberOfDays; i += 1) {
     daysArr.push(`Day ${i}`);
   }
@@ -29,7 +32,7 @@ const CreateEventBox = (props) => {
             name="createEventName"
             placeholder="enter an event"
             onChange={({ target }) => setNewEvent(target.value)}
-            onKeyUp={(event) => console.log(event)}
+            onKeyUp={({ key, target }) => isEnter(key, target.value)}
           />
         </span>
         <span>
@@ -39,6 +42,7 @@ const CreateEventBox = (props) => {
             name="createEventAddress"
             placeholder="enter an address"
             onChange={({ target }) => setNewEventAddress(target.value)}
+            onKeyUp={({ key, target }) => isEnter(key, target.value)}
           />
         </span>
 
@@ -51,11 +55,11 @@ const CreateEventBox = (props) => {
         <span>
           <button
             className="addEvent"
-            onClick={() => addNewEvent({
+            onClick={() => saveEvent({
               name: newEvent,
               address: newEventAddress,
               vote: 0,
-            }, getTrip)}
+            }, props)}
           >
                 Create Event
           </button>

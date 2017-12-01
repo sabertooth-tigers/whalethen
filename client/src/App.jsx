@@ -13,31 +13,13 @@ import * as actionCreators from './actions/actionCreator';
 
 class App extends React.Component {
 
-  getTrip(event) {
-    if (event && event.key !== 'Enter') { return; }
-
-    const { timelineId, setId, setDays, onInputChange, setTimelineData } = this.props;
-
-    axios.get(`/timeline/${timelineId}`)
-      .then(({ data }) => {
-        onInputChange('timelineName', data[0].timelineName);
-        setId(data[0].timelineId);
-        setDays(data.length);
-        setTimelineData(data);
-      })
-      .catch(err => console.error(err));
-  }
-
   render() {
     const {
       timelineName,
       timelineId,
-      numberOfDays,
       saveTimeline,
-      saveTimelineToDatabase,
+      getTrip,
     } = this.props;
-
-    this.getTrip = this.getTrip.bind(this);
 
     return (
       <div className="App">
@@ -45,17 +27,17 @@ class App extends React.Component {
         <div className="container timelineParams">
           <div className="label">{timelineName}</div>
           <div className="label">{timelineId}</div>
-          <TimelineInputBox {...this.props} getTrip={this.getTrip} />
+          <TimelineInputBox {...this.props} />
           <StartDateBox {...this.props} />
           <EndDateBox {...this.props} />
-          <button className="scheduleSubmit" onClick={() => saveTimeline(null, this.getTrip)}>
+          <button className="scheduleSubmit" onClick={() => saveTimeline(null, getTrip)}>
             New Schedule
           </button>
         </div>
-        <CreateEventBox {...this.props} getTrip={this.getTrip} />
-        <TimelineLookUp {...this.props} getTrip={this.getTrip} />
+        <CreateEventBox {...this.props} />
+        <TimelineLookUp {...this.props} />
         <Timeline {...this.props} />
-        <Search {...this.props} getTrip={this.getTrip} />
+        <Search {...this.props} />
       </div>
     );
   }

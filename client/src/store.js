@@ -1,13 +1,11 @@
-import { createStore, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
-import moment from 'moment';
-import axios from 'axios';
-import shortid from 'shortid';
-
+import thunk from 'redux-thunk';
 // import the root reducer
 
 import rootReducer from './reducers/index';
+
 
 const appState = {
   timelineData: [],
@@ -32,4 +30,4 @@ if (module.hot) {
   });
 }
 
-export default createStore(rootReducer, state);
+export default createStore(rootReducer, state, applyMiddleware(thunk));
