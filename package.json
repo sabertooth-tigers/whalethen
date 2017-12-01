@@ -16,6 +16,7 @@
     "test": "live-server --open=./specRunner.html --port=8081"
   },
   "dependencies": {
+    "annyang": "^2.6.0",
     "axios": "^0.17.1",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
