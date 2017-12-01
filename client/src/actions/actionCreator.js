@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import moment from 'moment';
 // ADD_EVENT
 export const addEvent = event => ({
   type: 'ADD_EVENT',
@@ -82,3 +82,15 @@ export const saveEvent = (event, { timelineId, timelineName, createEventDay }) =
     .then(() => getTrip(timelineId))
     .then(dispatch)
     .catch(err => console.error('add event error: ', err));
+
+export const savingTimeline = ({ timelineName, startDate, endDate }, timelineId) => dispatch =>
+  axios.post('/timeline', {
+    timelineId,
+    timelineName,
+    numberOfDays: moment(endDate).diff(moment(startDate), 'days'),
+  })
+    .then(() => setDays(moment(endDate).diff(moment(startDate), 'days')))
+    .then(() => setId(timelineId))
+    .then(() => getTrip(timelineId))
+    .then(dispatch)
+    .catch(err => console.error('error in submit ', err));

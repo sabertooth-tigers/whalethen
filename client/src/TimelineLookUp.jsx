@@ -4,9 +4,10 @@ import propTypes from 'prop-types';
 const TimelineLookUp = (props) => {
   const {
     getTrip,
-    onLookupEnter,
     setId,
+    timelineId
   } = props;
+  let id;
 
   const isEnter = (key, value) => key === 'Enter' ? getTrip(value) : 1;
 
@@ -22,7 +23,7 @@ const TimelineLookUp = (props) => {
         placeholder="enter ID"
         onKeyUp={({ key, target }) => isEnter(key, target.value)}
       />
-      <button className="searchSubmit" onClick={() => getTrip()}>Search ID</button>
+      <button className="searchSubmit" onClick={() => getTrip(timelineId)}>Search ID</button>
       </label>
     </div>
   );

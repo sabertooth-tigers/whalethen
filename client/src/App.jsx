@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Search from './Search';
@@ -16,8 +15,6 @@ class App extends React.Component {
     const {
       timelineName,
       timelineId,
-      saveTimeline,
-      getTrip,
     } = this.props;
 
     return (
@@ -29,9 +26,6 @@ class App extends React.Component {
           <TimelineInputBox {...this.props} />
           <StartDateBox {...this.props} />
           <EndDateBox {...this.props} />
-          <button className="scheduleSubmit" onClick={() => saveTimeline(null, getTrip)}>
-            New Schedule
-          </button>
         </div>
         <CreateEventBox {...this.props} />
         <TimelineLookUp {...this.props} />

@@ -1,7 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import shortid from 'shortid';
 
-const EndDateBox = ({ onInputChange, onEnter }) => (
+const EndDateBox = props => (
   <div className="inputBox label">
     <label className="endDate" htmlFor="endDate">
       End Date:
@@ -9,10 +10,16 @@ const EndDateBox = ({ onInputChange, onEnter }) => (
         id="endDate"
         type="date"
         name="endDate"
-        onChange={({ target }) => onInputChange(target.name, target.value)}
+        onChange={({ target }) => props.onInputChange(target.name, target.value)}
         placeholder="enter an end date"
       />
     </label>
+    <button
+      className="scheduleSubmit"
+      onClick={() => props.savingTimeline(props, shortid.generate())}
+    >
+      New Schedule
+    </button>
   </div>
 );
 
