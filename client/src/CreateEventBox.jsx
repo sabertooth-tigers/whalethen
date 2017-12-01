@@ -47,7 +47,7 @@ const CreateEventBox = (props) => {
         <span>
           <button
             className="addEvent"
-            onClick={createEvent}
+            onClick={() => createEvent()}
           >
                 Create Event
           </button>

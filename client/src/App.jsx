@@ -16,7 +16,7 @@ import * as actionCreators from './actions/actionCreator';
 class App extends React.Component {
 
   getTrip(event) {
-    if (event && event.key === 'Enter') { return; }
+    if (event && event.key !== 'Enter') { return; }
 
     const { timelineId, setId, setDays, onInputChange, setTimelineData } = this.props;
 
@@ -30,35 +30,21 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  addNewEvent(event, selectedDay) {
-    const { timelineId, timelineName } = this.props;
-    const day = Number(selectedDay.slice(4));
-
-    axios.post('/entry', {
-      event,
-      timelineId,
-      day,
-      timelineName,
-    })
-      .then(() => this.getTrip())
-      .catch(err => console.error('add event error: ', err));
-  }
-
   createEvent(event) {
-    if (event && event.key === 'Enter') { return; }
+    if (event && event.key !== 'Enter') { return; }
 
-    const { newEvent, newEventAddress } = this.props;
+    const { newEvent, newEventAddress, addNewEvent } = this.props;
     const eventObj = {
       name: newEvent,
       address: newEventAddress,
       votes: 0,
     };
-    this.addNewEvent(eventObj, this.props.createEventDay);
+
+    addNewEvent(eventObj, this.getTrip, this.props.createEventDay);
   }
 
   render() {
     const { timelineName, timelineId, numberOfDays, saveTimeline, saveTimelineToDatabase } = this.props;
-    this.addNewEvent = this.addNewEvent.bind(this);
     this.getTrip = this.getTrip.bind(this);
     this.createEvent = this.createEvent.bind(this);
 
@@ -76,9 +62,9 @@ class App extends React.Component {
           </button>
         </div>
         <CreateEventBox {...this.props} createEvent={this.createEvent} />
-        <TimelineLookUp {...this.props} />
+        <TimelineLookUp {...this.props} getTrip={this.getTrip} />
         <Timeline {...this.props} />
-        <Search {...this.props} addNewEvent={this.addNewEvent} />
+        <Search {...this.props} getTrip={this.getTrip} />
       </div>
     );
   }

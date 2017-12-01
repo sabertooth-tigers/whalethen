@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
-//import { routerReducer } from 'react-router-redux';
-import voting from './voting';
-import events from './events';
 import shortid from 'shortid';
 import axios from 'axios';
 import moment from 'moment';
+// import { routerReducer } from 'react-router-redux';
+import voting from './voting';
+import events from './events';
 
-const saveTimelineToDatabase = function (event, props, getTrip) {
+
+const saveTimeline = function (event, props, getTrip) {
   if (event && event.key !== 'Enter') { return; }
 
   const {
@@ -32,6 +33,20 @@ const saveTimelineToDatabase = function (event, props, getTrip) {
     timelineId,
     numberOfDays,
   });
+};
+
+const addNewEvent = function(event, selectedDay, getTrip, props) {
+  const { timelineId, timelineName } = props;
+  const day = Number(selectedDay.slice(4));
+
+  axios.post('/entry', {
+    event,
+    timelineId,
+    day,
+    timelineName,
+  })
+    .then(() => getTrip())
+    .catch(err => console.error('add event error: ', err));
 };
 
 const appState = (state = {}, action) => {
@@ -74,8 +89,11 @@ const appState = (state = {}, action) => {
     case 'SAVE_TIMELINE':
       return {
         ...state,
-        ...saveTimelineToDatabase(action.event, state, action.getTrip),
+        ...saveTimeline(action.event, state, action.getTrip),
       };
+    case 'ADD_NEW_EVENT':
+      addNewEvent(action.event, action.day, action.getTrip, state);
+      return state;
     default:
       return state;
   }

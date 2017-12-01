@@ -20,7 +20,7 @@ const TimelineLookUp = (props) => {
         placeholder="enter ID"
         onKeyUp={event => getTrip(event)}
       />
-      <button className="searchSubmit" onClick={getTrip}>Search ID</button>
+      <button className="searchSubmit" onClick={() => getTrip()}>Search ID</button>
       </label>
     </div>
   );
