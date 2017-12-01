@@ -35,11 +35,10 @@ const saveTimeline = function (event, props, getTrip) {
   });
 };
 
-const addNewEvent = function(event, selectedDay, getTrip, props) {
-  if (event && event.key !== 'Enter') { return; }
+const addNewEvent = function(event, getTrip, props) {
 
-  const { timelineId, timelineName } = props;
-  const day = Number(selectedDay.slice(4));
+  const { timelineId, timelineName, createEventDay } = props;
+  const day = Number(createEventDay.slice(4));
 
   axios.post('/entry', {
     event,
@@ -94,7 +93,7 @@ const appState = (state = {}, action) => {
         ...saveTimeline(action.event, state, action.getTrip),
       };
     case 'ADD_NEW_EVENT':
-      addNewEvent(action.event, action.day, action.getTrip, state);
+      addNewEvent(action.event, action.getTrip, state);
       return state;
     default:
       return state;

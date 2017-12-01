@@ -9,9 +9,9 @@ const CreateEventBox = (props) => {
     setNewEventAddress,
     newEvent,
     newEventAddress,
-    createEvent,
     createEventDay,
     addNewEvent,
+    getTrip,
   } = props;
 
   const daysArr = ['Choose Day'];
@@ -29,6 +29,7 @@ const CreateEventBox = (props) => {
             name="createEventName"
             placeholder="enter an event"
             onChange={({ target }) => setNewEvent(target.value)}
+            onKeyUp={(event) => console.log(event)}
           />
         </span>
         <span>
@@ -38,11 +39,6 @@ const CreateEventBox = (props) => {
             name="createEventAddress"
             placeholder="enter an address"
             onChange={({ target }) => setNewEventAddress(target.value)}
-            onKeyUp={event => addNewEvent(event, {
-              name: newEvent,
-              address: newEventAddress,
-              vote: 0,
-            }, createEventDay)}
           />
         </span>
 
@@ -55,7 +51,11 @@ const CreateEventBox = (props) => {
         <span>
           <button
             className="addEvent"
-            onClick={() => createEvent()}
+            onClick={() => addNewEvent({
+              name: newEvent,
+              address: newEventAddress,
+              vote: 0,
+            }, getTrip)}
           >
                 Create Event
           </button>

@@ -59,9 +59,8 @@ export const saveTimeline = (event, getTrip) => ({
   getTrip,
 });
 
-export const addNewEvent = (event, getTrip, day) => ({
+export const addNewEvent = (event, getTrip) => ({
   type: 'ADD_NEW_EVENT',
   event,
-  day,
   getTrip,
 });

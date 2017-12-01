@@ -1,11 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import moment from 'moment';
-import shortid from 'shortid';
-import Search from './Search';
-import Timeline from './Timeline';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Search from './Search';
+import Timeline from './Timeline';
 import TimelineInputBox from './TimelineInputBox';
 import TimelineLookUp from './TimelineLookUp';
 import StartDateBox from './StartDateBox';
@@ -36,11 +34,10 @@ class App extends React.Component {
       timelineId,
       numberOfDays,
       saveTimeline,
-      saveTimelineToDatabase
+      saveTimelineToDatabase,
     } = this.props;
 
     this.getTrip = this.getTrip.bind(this);
-    this.createEvent = this.createEvent.bind(this);
 
     return (
       <div className="App">
@@ -55,7 +52,7 @@ class App extends React.Component {
             New Schedule
           </button>
         </div>
-        <CreateEventBox {...this.props} createEvent={this.createEvent} />
+        <CreateEventBox {...this.props} getTrip={this.getTrip} />
         <TimelineLookUp {...this.props} getTrip={this.getTrip} />
         <Timeline {...this.props} />
         <Search {...this.props} getTrip={this.getTrip} />
