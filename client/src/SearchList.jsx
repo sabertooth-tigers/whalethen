@@ -17,7 +17,7 @@ const SearchList = (props) => {
     <div className="searchList">
       {_.map(searchList, (event, index) => (
         <SearchEntry
-          {...this.props}
+          {...props}
           numberOfDays={numberOfDays}
           key={index}
           event={event}

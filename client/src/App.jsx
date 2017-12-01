@@ -13,11 +13,6 @@ import * as actionCreators from './actions/actionCreator';
 
 class App extends React.Component {
 
-  getTrip(event) {
-    if (event && event.key !== 'Enter') { return; }
-    this.props.getTrip(this.props.timelineId);
-  }
-
   render() {
     const {
       timelineName,
@@ -25,8 +20,6 @@ class App extends React.Component {
       saveTimeline,
       getTrip,
     } = this.props;
-
-    this.getTrip = this.getTrip.bind(this);
 
     return (
       <div className="App">
