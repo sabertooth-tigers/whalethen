@@ -61,7 +61,7 @@ class Search extends React.Component {
         />
         <div className="scrollbox">
           <SearchList
-            getTrip={this.props.getTrip}
+            {...this.props}
             searchList={this.state.searchList}
             numberOfDays={this.props.numberOfDays}
             addNewEvent={this.props.addNewEvent}

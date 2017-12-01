@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // ADD_EVENT
 export const addEvent = event => ({
   type: 'ADD_EVENT',
@@ -64,3 +66,16 @@ export const addNewEvent = (event, getTrip) => ({
   event,
   getTrip,
 });
+
+
+export const getTrip = timelineId => dispatch =>
+  axios(`/timeline/${timelineId}`)
+    .then(({ data }) => dispatch({
+      type: 'GET_TRIP',
+      data,
+    }))
+    .catch(({ error }) => dispatch({
+      type: 'GET_TRIP_FAILURE',
+      error,
+    }));
+

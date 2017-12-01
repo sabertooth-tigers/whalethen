@@ -26,7 +26,7 @@ const saveTimeline = function (event, props, getTrip) {
     timelineName,
     numberOfDays,
   })
-    .then(() => getTrip())
+    .then(() => getTrip(timelineId))
     .catch(err => console.error('error in submit ', err));
 
   return ({
@@ -46,7 +46,7 @@ const addNewEvent = function(event, getTrip, props) {
     day,
     timelineName,
   })
-    .then(() => getTrip())
+    .then(() => getTrip(timelineId))
     .catch(err => console.error('add event error: ', err));
 };
 
@@ -94,6 +94,19 @@ const appState = (state = {}, action) => {
       };
     case 'ADD_NEW_EVENT':
       addNewEvent(action.event, action.getTrip, state);
+      return state;
+    case 'GET_TRIP':
+      const { data } = action;
+      const { timelineId, timelineName } = data[0];
+      return {
+        ...state,
+        timelineData: data,
+        timelineId,
+        timelineName,
+        numberOfDays: data.length,
+      };
+    case 'GET_TRIP_ERROR':
+      console.log(action.error);
       return state;
     default:
       return state;
