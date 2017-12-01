@@ -52,3 +52,9 @@ export const setNewEventAddress = address => ({
   type: 'SET_NEW_EVENT_ADDRESS',
   address,
 });
+
+export const saveTimeline = (event, getTrip) => ({
+  type: 'SAVE_TIMELINE',
+  event,
+  getTrip,
+});

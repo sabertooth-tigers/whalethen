@@ -11,7 +11,7 @@ const TimelineInputBox = (props) => (
       name="timelineName"
       onChange={({ target }) => props.onInputChange(target.name, target.value)}
       placeholder="enter a name"
-      onKeyUp={event => props.onSubmit(event, props, props.getTrip)}
+      onKeyUp={event => props.onSubmit(event, props.getTrip)}
     />
     </label>
   </div>

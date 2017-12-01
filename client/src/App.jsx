@@ -57,8 +57,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { timelineName, timelineId, numberOfDays, saveTimelineToDatabase } = this.props;
-    const saveTimeline = saveTimelineToDatabase.bind(this);
+    const { timelineName, timelineId, numberOfDays, saveTimeline, saveTimelineToDatabase } = this.props;
     this.addNewEvent = this.addNewEvent.bind(this);
     this.getTrip = this.getTrip.bind(this);
     this.createEvent = this.createEvent.bind(this);
@@ -69,10 +68,10 @@ class App extends React.Component {
         <div className="container timelineParams">
           <div className="label">{timelineName}</div>
           <div className="label">{timelineId}</div>
-          <TimelineInputBox {...this.props} onSubmit={saveTimelineToDatabase} getTrip={this.getTrip} />
+          <TimelineInputBox {...this.props} onSubmit={saveTimeline} getTrip={this.getTrip} />
           <StartDateBox {...this.props} />
           <EndDateBox {...this.props} />
-          <button className="scheduleSubmit" onClick={() => saveTimelineToDatabase(null, this.props, this.getTrip)}>
+          <button className="scheduleSubmit" onClick={() => saveTimeline(null, this.getTrip)}>
             New Schedule
           </button>
         </div>

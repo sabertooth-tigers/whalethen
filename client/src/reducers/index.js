@@ -3,6 +3,36 @@ import { combineReducers } from 'redux';
 import voting from './voting';
 import events from './events';
 import shortid from 'shortid';
+import axios from 'axios';
+import moment from 'moment';
+
+const saveTimelineToDatabase = function (event, props, getTrip) {
+  if (event && event.key !== 'Enter') { return; }
+
+  const {
+    startDate,
+    endDate,
+    timelineName,
+  } = props;
+
+  const start = moment(startDate);
+  const end = moment(endDate);
+  const timelineId = shortid.generate();
+  const numberOfDays = end.diff(start, 'days');
+
+  axios.post('/timeline', {
+    timelineId,
+    timelineName,
+    numberOfDays,
+  })
+    .then(() => getTrip())
+    .catch(err => console.error('error in submit ', err));
+
+  return ({
+    timelineId,
+    numberOfDays,
+  });
+};
 
 const appState = (state = {}, action) => {
   switch (action.type) {
@@ -40,6 +70,11 @@ const appState = (state = {}, action) => {
       return {
         ...state,
         newEventAddress: action.address,
+      };
+    case 'SAVE_TIMELINE':
+      return {
+        ...state,
+        ...saveTimelineToDatabase(action.event, state, action.getTrip),
       };
     default:
       return state;

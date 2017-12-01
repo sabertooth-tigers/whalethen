@@ -9,33 +9,6 @@ import shortid from 'shortid';
 
 import rootReducer from './reducers/index';
 
-const saveTimelineToDatabase = function(event, props, getTrip) {
-  if (event && event.key !== 'Enter') { return; }
-
-  const {
-    startDate,
-    endDate,
-    timelineName,
-    setId,
-    setDays,
-  } = props;
-
-  const start = moment(startDate);
-  const end = moment(endDate);
-  const timelineId = shortid.generate();
-  const numberOfDays = end.diff(start, 'days');
-  setId(timelineId);
-  setDays(numberOfDays);
-
-  axios.post('/timeline', {
-    timelineId,
-    timelineName,
-    numberOfDays,
-  })
-    .then(() => getTrip())
-    .catch(err => console.error('error in submit ', err));
-};
-
 const appState = {
   timelineData: [],
   timelineName: 'testTimeline', // temp until we get some more data built up
@@ -46,7 +19,6 @@ const appState = {
   createEventDay: '',
   newEvent: '',
   newEventAddress: '',
-  saveTimelineToDatabase,
 };
 
 const state = {
