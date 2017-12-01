@@ -9,10 +9,7 @@ const TimelineLookUp = (props) => {
   } = props;
   let id;
 
-  const isEnter = (key, value) => {
-    id = value;
-    key === 'Enter' ? getTrip(value) : 1
-  };
+  const isEnter = (key, value) => key === 'Enter' ? getTrip(value) : 1;
 
   return (
     <div className="inputBox">
