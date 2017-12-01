@@ -12,7 +12,6 @@ import CreateEventBox from './CreateEventBox';
 import * as actionCreators from './actions/actionCreator';
 
 class App extends React.Component {
-
   render() {
     const {
       timelineName,
@@ -23,7 +22,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <div className="title">Well Hollo</div>
+        <div className="title">WhaleThen</div>
         <div className="container timelineParams">
           <div className="label">{timelineName}</div>
           <div className="label">{timelineId}</div>
