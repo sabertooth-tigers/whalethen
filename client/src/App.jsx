@@ -61,7 +61,9 @@ class App extends React.Component {
   }
 }
 
+
 const mapStateToProps = ({ appState }) => ({ ...appState });
+
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
