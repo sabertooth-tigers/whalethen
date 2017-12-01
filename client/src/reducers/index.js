@@ -6,35 +6,6 @@ import moment from 'moment';
 import voting from './voting';
 import events from './events';
 
-
-const saveTimeline = function (event, props, getTrip) {
-  if (event && event.key !== 'Enter') { return; }
-
-  const {
-    startDate,
-    endDate,
-    timelineName,
-  } = props;
-
-  const start = moment(startDate);
-  const end = moment(endDate);
-  const timelineId = shortid.generate();
-  const numberOfDays = end.diff(start, 'days');
-
-  axios.post('/timeline', {
-    timelineId,
-    timelineName,
-    numberOfDays,
-  })
-    .then(() => getTrip(timelineId))
-    .catch(err => console.error('error in submit ', err));
-
-  return ({
-    timelineId,
-    numberOfDays,
-  });
-};
-
 const appState = (state = {}, action) => {
   switch (action.type) {
     case 'ON_INPUT_CHANGE':
@@ -53,10 +24,11 @@ const appState = (state = {}, action) => {
         timelineId: action.id,
       };
     case 'SET_DAYS':
+    	console.log(action.days);
       return {
         ...state,
         numberOfDays: action.days,
-      };
+      };	
     case 'CREATE_DAY_SELECT':
       return {
         ...state,
@@ -71,11 +43,6 @@ const appState = (state = {}, action) => {
       return {
         ...state,
         newEventAddress: action.address,
-      };
-    case 'SAVE_TIMELINE':
-      return {
-        ...state,
-        ...saveTimeline(action.event, state, action.getTrip),
       };
     case 'GET_TRIP':
       const { data } = action;
