@@ -36,6 +36,8 @@ const saveTimeline = function (event, props, getTrip) {
 };
 
 const addNewEvent = function(event, selectedDay, getTrip, props) {
+  if (event && event.key !== 'Enter') { return; }
+
   const { timelineId, timelineName } = props;
   const day = Number(selectedDay.slice(4));
 

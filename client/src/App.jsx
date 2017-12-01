@@ -4,13 +4,13 @@ import moment from 'moment';
 import shortid from 'shortid';
 import Search from './Search';
 import Timeline from './Timeline';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import TimelineInputBox from './TimelineInputBox';
 import TimelineLookUp from './TimelineLookUp';
 import StartDateBox from './StartDateBox';
 import EndDateBox from './EndDateBox';
 import CreateEventBox from './CreateEventBox';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as actionCreators from './actions/actionCreator';
 
 class App extends React.Component {
@@ -30,21 +30,15 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  createEvent(event) {
-    if (event && event.key !== 'Enter') { return; }
-
-    const { newEvent, newEventAddress, addNewEvent } = this.props;
-    const eventObj = {
-      name: newEvent,
-      address: newEventAddress,
-      votes: 0,
-    };
-
-    addNewEvent(eventObj, this.getTrip, this.props.createEventDay);
-  }
-
   render() {
-    const { timelineName, timelineId, numberOfDays, saveTimeline, saveTimelineToDatabase } = this.props;
+    const {
+      timelineName,
+      timelineId,
+      numberOfDays,
+      saveTimeline,
+      saveTimelineToDatabase
+    } = this.props;
+
     this.getTrip = this.getTrip.bind(this);
     this.createEvent = this.createEvent.bind(this);
 
@@ -54,7 +48,7 @@ class App extends React.Component {
         <div className="container timelineParams">
           <div className="label">{timelineName}</div>
           <div className="label">{timelineId}</div>
-          <TimelineInputBox {...this.props} onSubmit={saveTimeline} getTrip={this.getTrip} />
+          <TimelineInputBox {...this.props} getTrip={this.getTrip} />
           <StartDateBox {...this.props} />
           <EndDateBox {...this.props} />
           <button className="scheduleSubmit" onClick={() => saveTimeline(null, this.getTrip)}>
