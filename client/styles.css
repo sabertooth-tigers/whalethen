@@ -19,6 +19,7 @@ body {
   display: flex;
   min-height: min-content;
   background: white;
+  letter-spacing: .04em;
 }
 
 .dayTitle {
@@ -30,7 +31,7 @@ body {
 .dayView {
   width: 200px;
   border: 1px solid white;
-  background-color: #FFF1E4;
+  background-color: #82e9de;
 }
 
 .dayLabel {
@@ -41,7 +42,7 @@ body {
 }
 
 .dayWrap {
-  color: #DF7979;
+  color: #00867d;
 }
 .description {
   color: #707070;
@@ -54,7 +55,7 @@ body {
 }
 
 .eventName {
-  background-color: #E13A3A;
+  background-color: #00857c;
   color: #fff;
   font-weight: bold;
   padding: .3em .5em .2em .5em;
@@ -223,7 +224,7 @@ input {
 /*button {
   height: 60px;
   width: 80px;
-  background-color: rgb(56, 222, 225); /* Green */
+  background-color: #616161; 
   border: none;
   color: white;
   border-radius: 1px;
