@@ -23,18 +23,47 @@ body {
 }
 
 .dayTitle {
-  text-decoration: underline;
-  text-align: center;
+  text-align: right;
+  font-size: 2em;
+  padding: .2em;
 }
 
 .dayView {
-  padding: 5px;
   width: 200px;
-  border: 1px solid black;
+  border: 1px solid white;
+  background-color: #FFF1E4;
+}
+
+.dayLabel {
+  text-align: right;
+  font-size: .9em;
+  padding-right: .3em;
+  padding-top: 1.2em;
+}
+
+.dayWrap {
+  color: #DF7979;
+}
+.description {
+  color: #707070;
+  padding: .5em;
+  padding-bottom: 1.1em;
 }
 
 .event {
-  padding: .3em;
+  padding: 0em;
+}
+
+.eventName {
+  color: #E13A3A;
+  font-weight: bold;
+  padding: 1.2em .5em .2em .5em;
+}
+
+.label {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1em;
+  color: #707070;
 }
 
 .searchComponent {}
@@ -55,7 +84,7 @@ body {
   grid-area: search;
   align-content: stretch;
   flex-direction: column;
-  font-family: 'Boogaloo', cursive;
+  font-family: 'Rubik', sans-serif;
 }
 
 .searchSubmit button {
@@ -93,6 +122,11 @@ body {
   text-align: center;
   font-size: 45pt;
   font-weight: bold;
+  font-family: 'Libre Baskerville', serif;
+  color: #202020;
+  font-size: 3em;
+  text-align: left;
+  padding: .3em 0em .2em 1.2em;
 }
 
 .timelineName {
@@ -161,11 +195,25 @@ input {
   flex: 1;
   overflow: auto;
   font-size: 1.1em;
-  font-family: 'Boogaloo', cursive;
+  font-family: 'Fjalla One', sans-serif;
 }
 
 .event {
-  margin: 5px;
+  margin: 0em;
+}
+
+.vote {
+  color: #707070;
+  padding-bottom: .8em;
+}
+
+.votes {
+  height: 24px;
+  width: 24px;
+}
+
+.voteWrap {
+  padding: .5em;
 }
 
 /*button {
@@ -180,4 +228,7 @@ input {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-}*/
+  font-family: 'Rubik', sans-serif;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px 0 rgba(165,165,165,0.50);
+}

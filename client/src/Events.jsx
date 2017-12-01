@@ -35,10 +35,11 @@ class Events extends React.Component {
       <div className="event">
         <div className="eventName">{this.props.event.name}</div>
         <div className="description">{this.props.event.address}</div>
-        <span className="vote">{` Votes: ${this.props.vote ? this.props.vote[event._id] : 0}`}
-          <button className="votes" onClick={() => saveVote(this.props, -1)}>-</button>
-          <button className="votes" onClick={() => saveVote(this.props, 1)}>+</button>
-        </span>
+        <div className="voteWrap">
+          <button className="votes" value="-" onClick={this.updateVotes}>-</button>
+          <span className="vote">{` Votes ${this.state.votes}   `}</span>
+          <button className="votes" value="+" onClick={this.updateVotes}>+</button>
+        </div>
       </div>
     );
   }
