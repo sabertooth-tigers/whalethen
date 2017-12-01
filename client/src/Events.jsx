@@ -37,7 +37,7 @@ class Events extends React.Component {
         <div className="description">{this.props.event.address}</div>
         <div className="voteWrap">
           <button className="votes" value="-" onClick={this.updateVotes}>-</button>
-          <span className="vote">{` Votes ${this.state.votes}   `}</span>
+          <span className="vote">{` ${this.state.votes} Votes   `}</span>
           <button className="votes" value="+" onClick={this.updateVotes}>+</button>
         </div>
       </div>

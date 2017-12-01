@@ -13,7 +13,6 @@ body {
 
 .container {
   border: 1px solid white;
-  padding: 10px;
 }
 
 .day {
@@ -55,9 +54,10 @@ body {
 }
 
 .eventName {
-  color: #E13A3A;
+  background-color: #E13A3A;
+  color: #fff;
   font-weight: bold;
-  padding: 1.2em .5em .2em .5em;
+  padding: .3em .5em .2em .5em;
 }
 
 .label {
@@ -123,10 +123,12 @@ body {
   font-size: 45pt;
   font-weight: bold;
   font-family: 'Libre Baskerville', serif;
-  color: #202020;
-  font-size: 3em;
+  color: #83CDC5;
+  font-size: 2em;
   text-align: left;
   padding: .3em 0em .2em 1.2em;
+  background-color: #FFF;
+  box-shadow: 0 2px 2px 0 rgba(134,134,134,0.50);
 }
 
 .timelineName {
@@ -205,6 +207,7 @@ input {
 .vote {
   color: #707070;
   padding-bottom: .8em;
+  padding: 0 .6em .8em .6em;
 }
 
 .votes {
@@ -214,6 +217,7 @@ input {
 
 .voteWrap {
   padding: .5em;
+  margin: 0 auto;
 }
 
 /*button {
