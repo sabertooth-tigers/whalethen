@@ -12,11 +12,11 @@ describe('Actions', () => {
   });
 
   describe('Voting', () => {
-    xit('Should be able to remove an event', ()=> {
+    it('Should be able to remove an event', ()=> {
 
     });
 
-    xit('Should not mutate the state when removing an event', ()=> {
+    it('Should not mutate the state when removing an event', ()=> {
 
     });
   });
