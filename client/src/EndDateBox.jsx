@@ -14,7 +14,10 @@ const EndDateBox = props => (
         placeholder="enter an end date"
       />
     </label>
-    <button className="scheduleSubmit" onClick={() => props.savingTimeline(props, shortid.generate())}>
+    <button
+      className="scheduleSubmit"
+      onClick={() => props.savingTimeline(props, shortid.generate())}
+    >
       New Schedule
     </button>
   </div>

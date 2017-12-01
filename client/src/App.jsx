@@ -1,5 +1,4 @@
 import React from 'react';
-import shortid from 'shortid';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Search from './Search';
