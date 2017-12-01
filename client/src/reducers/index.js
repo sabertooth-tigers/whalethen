@@ -35,21 +35,6 @@ const saveTimeline = function (event, props, getTrip) {
   });
 };
 
-const addNewEvent = function(event, getTrip, props) {
-
-  const { timelineId, timelineName, createEventDay } = props;
-  const day = Number(createEventDay.slice(4));
-
-  axios.post('/entry', {
-    event,
-    timelineId,
-    day,
-    timelineName,
-  })
-    .then(() => getTrip(timelineId))
-    .catch(err => console.error('add event error: ', err));
-};
-
 const appState = (state = {}, action) => {
   switch (action.type) {
     case 'ON_INPUT_CHANGE':
@@ -92,9 +77,6 @@ const appState = (state = {}, action) => {
         ...state,
         ...saveTimeline(action.event, state, action.getTrip),
       };
-    case 'ADD_NEW_EVENT':
-      addNewEvent(action.event, action.getTrip, state);
-      return state;
     case 'GET_TRIP':
       const { data } = action;
       const { timelineId, timelineName } = data[0];

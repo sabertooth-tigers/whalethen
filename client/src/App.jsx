@@ -37,7 +37,7 @@ class App extends React.Component {
         <CreateEventBox {...this.props} />
         <TimelineLookUp {...this.props} />
         <Timeline {...this.props} />
-        <Search {...this.props}  />
+        <Search {...this.props} />
       </div>
     );
   }
