@@ -23,10 +23,6 @@ export const onInputChange = (name, value) => ({
   value,
 });
 
-export const generateId = () => ({
-  type: 'GENERATE_ID',
-});
-
 export const setId = id => ({
   type: 'SET_ID',
   id,
@@ -35,4 +31,36 @@ export const setId = id => ({
 export const setDays = days => ({
   type: 'SET_DAYS',
   days,
+});
+
+export const onCreateDaySelect = days => ({
+  type: 'CREATE_DAY_SELECT',
+  days,
+});
+
+export const setTimelineData = data => ({
+  type: 'SET_TIMELINE_DATA',
+  data,
+});
+
+export const setNewEvent = event => ({
+  type: 'SET_NEW_EVENT',
+  event,
+});
+
+export const setNewEventAddress = address => ({
+  type: 'SET_NEW_EVENT_ADDRESS',
+  address,
+});
+
+export const saveTimeline = (event, getTrip) => ({
+  type: 'SAVE_TIMELINE',
+  event,
+  getTrip,
+});
+
+export const addNewEvent = (event, getTrip) => ({
+  type: 'ADD_NEW_EVENT',
+  event,
+  getTrip,
 });

@@ -3,10 +3,9 @@ import propTypes from 'prop-types';
 
 const TimelineLookUp = (props) => {
   const {
-    handleID,
-    handleName,
     getTrip,
     onLookupEnter,
+    setId,
   } = props;
 
   return (
@@ -17,11 +16,11 @@ const TimelineLookUp = (props) => {
         id="timelineLookUp"
         type="text"
         name="timelineLookUp"
-        onChange={handleID}
+        onChange={({ target }) => setId(target.value)}
         placeholder="enter ID"
-        onKeyUp={event => onLookupEnter(event)}
+        onKeyUp={event => getTrip(event)}
       />
-        <button className="searchSubmit" onClick={getTrip}>Search ID</button>
+      <button className="searchSubmit" onClick={() => getTrip()}>Search ID</button>
       </label>
     </div>
   );

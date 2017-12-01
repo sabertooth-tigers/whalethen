@@ -1,6 +1,9 @@
 import { createStore, compose } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
+import moment from 'moment';
+import axios from 'axios';
+import shortid from 'shortid';
 
 // import the root reducer
 
@@ -19,7 +22,7 @@ const appState = {
 };
 
 const state = {
-	appState,
+  appState,
 };
 
 if (module.hot) {

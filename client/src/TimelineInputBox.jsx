@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-const TimelineInputBox = ({ onInputChange, onSubmit }) => (
+const TimelineInputBox = (props) => (
   <div className="inputBox label">
     <label className="timelineName" htmlFor="timelineName">
     Timeline Name:
@@ -9,9 +9,9 @@ const TimelineInputBox = ({ onInputChange, onSubmit }) => (
       id="timelineName"
       type="text"
       name="timelineName"
-      onChange={({ target }) => onInputChange(target.name, target.value)}
+      onChange={({ target }) => props.onInputChange(target.name, target.value)}
       placeholder="enter a name"
-      onKeyUp={event => onSubmit(event)}
+      onKeyUp={event => props.saveTimeline(event, props.getTrip)}
     />
     </label>
   </div>

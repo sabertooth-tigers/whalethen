@@ -8,6 +8,7 @@ const SearchListEntry = (props) => {
     addNewEvent,
     onDaySelect,
     selectedDay,
+    getTrip,
   } = props;
 
   const daysArr = ['Choose Day'];
@@ -30,7 +31,7 @@ const SearchListEntry = (props) => {
       <div>
         <button
           className="addEvent"
-          onClick={() => addNewEvent(event, selectedDay)}
+          onClick={() => addNewEvent(event, getTrip, selectedDay)}
         >
             Add Event
         </button>

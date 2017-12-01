@@ -11,6 +11,7 @@ const SearchList = (props) => {
     addNewEvent,
     onDaySelect,
     selectedDay,
+    getTrip,
   } = props;
   return (
     <div className="searchList">
@@ -20,6 +21,7 @@ const SearchList = (props) => {
           key={index}
           event={event}
           addNewEvent={addNewEvent}
+          getTrip={getTrip}
           onDaySelect={onDaySelect}
           selectedDay={selectedDay}
         />
