@@ -1,7 +1,7 @@
 import React from 'react';
 import Pagination from 'react-js-pagination';
 
-const Footer = props => (
+const Footer = ({ timelineData }) => (
   <div>
     <Pagination
       itemsCountPerPage={5}
