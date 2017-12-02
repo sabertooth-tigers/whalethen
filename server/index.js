@@ -58,7 +58,9 @@ app.delete('/entry/:id', (request, response) => {
 });
 
 app.get('/search', (request, response) => {
-  const { category, location } = request.query;
+  let { category, location } = request.query;
+  location = location || 'hotels';
+  category = category || 'san francisco';
   // for triggering a search to the search api
   api.placesApi(location, category)
     .then((result) => {

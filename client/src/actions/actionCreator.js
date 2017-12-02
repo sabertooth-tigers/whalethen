@@ -94,3 +94,26 @@ export const savingTimeline = ({ timelineName, startDate, endDate }, timelineId)
     .then(() => getTrip(timelineId))
     .then(dispatch)
     .catch(err => console.error('error in submit ', err));
+
+// ================================================
+// SEARCH ACTIONS
+// ================================================
+
+export const setCategory = category => ({
+  type: 'SET_CATEGORY',
+  category,
+});
+
+export const setLocation = location => ({
+  type: 'SET_LOCATION',
+  location,
+});
+
+export const getEntries = ({ termBar, locationSearch }) => dispatch =>
+  axios.get('/search', { params: { category: termBar, location: locationSearch } })
+    .then(({ data }) => (
+      dispatch({
+        type: 'GET_ENTRIES',
+        data,
+      })))
+    .catch(err => console.error(err));
