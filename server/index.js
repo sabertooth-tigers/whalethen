@@ -46,7 +46,6 @@ app.post('/entry', ({ body }, response) => {
 });
 
 app.put('/entry', ({ body }, response) => {
-  console.log(body);
   db.updateVotes(body.timelineId, body.day, body.eventId, body.votes)
     .then(() => response.sendStatus(200))
     .tapCatch(err => console.error(err))
