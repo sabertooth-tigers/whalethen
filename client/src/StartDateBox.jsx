@@ -7,7 +7,11 @@ import moment from 'moment';
 class StartDateBox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { displayCalendar: false };
+    this.state = {
+      displayCalendar: false,
+      totalDays: '',
+      showDuration: false,
+    };
 
     this.onSelectChange = this.onSelectChange.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -27,8 +31,13 @@ class StartDateBox extends React.Component {
     console.log(date);
     if (date.eventType === 3) {
       const rawDayCount = moment(date.end).diff(moment(date.start), 'days');
-      console.log('rawDayCount is: ', rawDayCount);
       this.props.setDateRange(rawDayCount);
+      this.setState({
+        displayCalendar: !this.state.displayCalendar,
+        totalDays: rawDayCount,
+        showDuration: true,
+      });
+      console.log('rawDayCount is: ', rawDayCount);
     }
   }
 
@@ -40,6 +49,11 @@ class StartDateBox extends React.Component {
     const today = new Date();
     const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
     const CalendarWithRange = withRange(Calendar);
+    const showDuration = (
+      <div className="showDuration">
+        Itinerary is {this.state.totalDays} days long
+      </div>
+    );
     const cal = (
       <label className="startDate" htmlFor="startDate">
         Start Date:
@@ -68,6 +82,7 @@ class StartDateBox extends React.Component {
         <button onClick={this.handleButtonClick}>Or say "Pick a Date"</button>
         {this.state.displayCalendar && cal}
         {/* {this.state.displayCalendar && reply()} */}
+        {this.state.showDuration && showDuration}
       </div>
     );
   }
