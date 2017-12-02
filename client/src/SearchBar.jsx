@@ -18,6 +18,7 @@ const SearchBar = props => (
       onKeyUp={({ key }) => key === 'Enter' ?  props.getEntries(props) : 1}
     />
     <button className="searchSubmit" onClick={() => props.getEntries(props)}>Search</button>
+
   </div>
 );
 
@@ -26,6 +27,7 @@ SearchBar.propTypes = {
   onEnter: propTypes.func.isRequired,
   setLocation: propTypes.func.isRequired,
   setCategory: propTypes.func.isRequired,
+
 };
 
 

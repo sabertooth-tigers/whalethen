@@ -61,6 +61,12 @@ export const saveTimeline = (event, getTrip) => ({
   getTrip,
 });
 
+/**
+ * getTrip is a query to the mongoDB and find a user created timelineId
+ * @param  {[number]} timelineId Is a unique ID to query the DB and return the saved timeline
+ * @return {object} On return data will be set to the appState reducer and set the state
+ */
+
 export const getTrip = timelineId => dispatch =>
   axios(`/timeline/${timelineId}`)
     .then(({ data }) => dispatch({
@@ -71,6 +77,17 @@ export const getTrip = timelineId => dispatch =>
       type: 'GET_TRIP_FAILURE',
       error,
     }));
+
+/**
+ * saveEvent takes a user entry and will uses axios to make a post to the server
+ * the endpoint '/entry' handled by the server to save the information to the
+ * database
+ * @param  {[object]} event          [description]
+ * @param  {[number]} timelineId     This will be a generated shortId to reference
+ *                                   later by the user.
+ * @param  {[string]} timelineName   User created timeline with a name to save to the DB.
+ * @param  {[array]} createEventDay Specefic index for an event to be saved to
+ */
 
 export const saveEvent = (event, { timelineId, timelineName, createEventDay }) => dispatch =>
   axios.post('/entry', {
