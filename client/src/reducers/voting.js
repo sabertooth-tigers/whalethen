@@ -10,6 +10,11 @@ export default (state = {}, action) => {
         ...state,
         vote: state.vote - 1,
       };
+    case 'SET_VOTE':
+      return {
+        ...state,
+        vote: action.vote,
+      };
     default:
       return state;
   }
