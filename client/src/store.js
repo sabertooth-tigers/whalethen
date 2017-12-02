@@ -51,8 +51,11 @@ const state = {
 };
 
 const enhancers = compose(window.devToolsExtension ? window.devToolsExtension() : f => f);
-const store = createStore(rootReducer, state, enhancers);
-
+const store = createStore(rootReducer, state, applyMiddleware(thunk));
+//^
+//In order to enable redux-devtools, switch the above and
+//below comments
+//V
 //const store = createStore(rootReducer, state, enhancers);
 if (module.hot) {
   module.hot.accept('./reducers/', () => {

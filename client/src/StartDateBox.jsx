@@ -37,7 +37,6 @@ class StartDateBox extends React.Component {
         totalDays: rawDayCount,
         showDuration: true,
       });
-      console.log('rawDayCount is: ', rawDayCount);
     }
   }
 
@@ -68,20 +67,15 @@ class StartDateBox extends React.Component {
       </label>
     );
 
-    // const reply = () => {
-    //   const to_speak = new SpeechSynthesisUtterance(`Whale then! Please select the start and end dates for your timeline.`);
-    //   window.speechSynthesis.speak(to_speak);
-    // }
-    // const reply = () => {
-    //   const speechOpenCal = new SpeechSynthesisUtterance(`We love backbone. It is better than react!`);
-    //   window.speechSynthesis.speak(speechOpenCal);
-    // }
+    const reply = () => {
+      const ziriOpenCal = new SpeechSynthesisUtterance(`Whale then! Please select the start and end dates for your timeline.`);
+      window.speechSynthesis.speak(ziriOpenCal);
+    }
     return (
-      <div className="inputBox label">
-        Placeholder
+      <div>
         <button onClick={this.handleButtonClick}>Or say "Pick a Date"</button>
         {this.state.displayCalendar && cal}
-        {/* {this.state.displayCalendar && reply()} */}
+        {this.state.displayCalendar && reply()}
         {this.state.showDuration && showDuration}
       </div>
     );
@@ -120,8 +114,6 @@ class StartDateBox extends React.Component {
 // };
 
 StartDateBox.propTypes = {
-  onInput: propTypes.func.isRequired,
-  onEnter: propTypes.func.isRequired,
   setDateRange: propTypes.func.isRequired,
 };
 
