@@ -33,8 +33,9 @@ const state = {
 };
 
 const enhancers = compose(window.devToolsExtension ? window.devToolsExtension() : f => f);
-const store = createStore(rootReducer, state, enhancers, applyMiddleware(thunk));
+const store = createStore(rootReducer, state, applyMiddleware(thunk));
 
+//const store = createStore(rootReducer, state, enhancers);
 if (module.hot) {
   module.hot.accept('./reducers/', () => {
     const nextRootReducer = require('./reducers/index').default;

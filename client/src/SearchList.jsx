@@ -21,7 +21,6 @@ const SearchList = (props) => {
           numberOfDays={numberOfDays}
           key={index}
           event={event}
-          addNewEvent={addNewEvent}
           onDaySelect={onDaySelect}
           selectedDay={selectedDay}
         />

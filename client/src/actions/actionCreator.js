@@ -94,3 +94,17 @@ export const savingTimeline = ({ timelineName, startDate, endDate }, timelineId)
     .then(() => getTrip(timelineId))
     .then(dispatch)
     .catch(err => console.error('error in submit ', err));
+
+// ================================================
+// SEARCH ACTIONS
+// ================================================
+
+export const setCategory = (category) => ({
+  type: 'SET_CATEGORY',
+  category,
+});
+
+export const setLocation = (category) => ({
+  type: 'SET_LOCATION',
+  location,
+});

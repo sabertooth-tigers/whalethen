@@ -12,8 +12,6 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locationSearch: '',
-      termBar: '',
       searchList: Data.sampleData,
       selectedDay: '',
     };
@@ -21,11 +19,10 @@ class Search extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.handleCat = this.handleCat.bind(this);
     this.handleLoc = this.handleLoc.bind(this);
-    this.onDaySelect = this.onDaySelect.bind(this);
     this.onEnter = this.onEnter.bind(this);
   }
   onSubmit() {
-    axios.get('/search', { params: { category: this.state.termBar, location: this.state.locationSearch } })
+    axios.get('/search', { params: { category: this.props.termBar, location: this.props.locationSearch } })
       .then(({ data }) => {
         console.log(data);
 
@@ -40,29 +37,13 @@ class Search extends React.Component {
       this.onSubmit();
     }
   }
-  onDaySelect(e) {
-    this.setState({
-      selectedDay: e.target.value,
-    });
-  }
-  handleCat(e) {
-    this.setState({
-      termBar: e.target.value,
-    });
-  }
-  handleLoc(e) {
-    this.setState({
-      locationSearch: e.target.value,
-    });
-  }
   render() {
     return (
       <div className="container search">
         <SearchBar
+          {...this.props}
           onSubmit={this.onSubmit}
           onEnter={this.onEnter}
-          handleCat={this.handleCat}
-          handleLoc={this.handleLoc}
         />
         <div className="scrollbox">
           <SearchList
@@ -70,7 +51,6 @@ class Search extends React.Component {
             searchList={this.state.searchList}
             numberOfDays={this.props.numberOfDays}
             addNewEvent={this.props.addNewEvent}
-            onDaySelect={this.onDaySelect}
             selectedDay={this.state.selectedDay}
           />
         </div>

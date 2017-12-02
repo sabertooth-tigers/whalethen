@@ -5,10 +5,7 @@ const SearchListEntry = (props) => {
   const {
     event,
     numberOfDays,
-    addNewEvent,
     onCreateDaySelect,
-    selectedDay,
-    getTrip,
     saveEvent,
   } = props;
 
@@ -43,9 +40,8 @@ const SearchListEntry = (props) => {
 
 SearchListEntry.propTypes = {
   event: propTypes.instanceOf(Object).isRequired,
-  addNewEvent: propTypes.func.isRequired,
-  onDaySelect: propTypes.func.isRequired,
-  selectedDay: propTypes.string.isRequired,
+  onCreateDaySelect: propTypes.func.isRequired,
+  saveEvent: propTypes.func.isRequired,
   numberOfDays: propTypes.number.isRequired,
 };
 
