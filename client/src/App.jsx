@@ -1,4 +1,3 @@
-import annyang from 'annyang';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,15 +9,6 @@ import Home from './Home';
 import TimelineComp from './TimelineComp';
 
 class App extends React.Component {
-  componentDidMount() {
-    if (annyang) {
-      const commands = {
-        'testing': () => console.log('We wrote tests for everything.'),
-      };
-      annyang.addCommands(commands);
-      annyang.start();
-    }
-  }
 
   render() {
     const {
