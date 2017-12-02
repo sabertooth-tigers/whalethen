@@ -7,7 +7,6 @@ const SearchBar = props => (
       id="location"
       type="text"
       placeholder="location"
-
       onChange={({ target }) => props.setLocation(target.value)}
       onKeyUp={({ key }) => key === 'Enter' ?  props.getEntries(props) : 1}
     />
