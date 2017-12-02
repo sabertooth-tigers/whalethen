@@ -117,3 +117,22 @@ export const getEntries = ({ termBar, locationSearch }) => dispatch =>
         data,
       })))
     .catch(err => console.error(err));
+
+// ==============================================
+// EVENT ACTIONS
+// ==============================================
+
+export const upvote = () => ({
+  type: 'INCREMENT_VOTE',
+});
+
+export const downvote = () => ({
+  type: 'DECREMENT_VOTE',
+});
+
+export const setVote = vote => ({
+  type: 'SET_VOTE',
+  vote,
+});
+
+// TODO: export const saveVote = (callback)

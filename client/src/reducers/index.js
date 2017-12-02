@@ -6,6 +6,7 @@ import moment from 'moment';
 import voting from './voting';
 import events from './events';
 import appState from './AppReducers';
+import eventState from './voting';
 
 const searchState = (state = {}, action) => {
   switch (action.type) {
@@ -30,4 +31,4 @@ const searchState = (state = {}, action) => {
   }
 };
 
-export default combineReducers({ voting, events, appState, searchState });
+export default combineReducers({ voting, events, appState, searchState, eventState });
