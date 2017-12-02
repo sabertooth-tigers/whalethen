@@ -30,10 +30,12 @@ const SearchBar = (props) => {
     </div>);
 };
 
+
 SearchBar.propTypes = {
   getEntries: propTypes.func.isRequired,
   setLocation: propTypes.func.isRequired,
   setCategory: propTypes.func.isRequired,
+
 };
 
 
