@@ -1,9 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 import propTypes from 'prop-types';
+import Pagination from 'react-js-pagination';
 import DayView from './Day';
 
-const Timeline = ({ timelineData, timelineId }) => (
+const Timeline = ({ timelineData, timelineId, activePage }) => (
   <div className="container timeline">
     <div className="container day">
       {_.map(timelineData, (day, index) => (
@@ -13,6 +14,15 @@ const Timeline = ({ timelineData, timelineId }) => (
           key={index}
         />
       ))}
+    </div>
+    <div>
+      <Pagination
+
+        itemsCountPerPage={5}
+        totalItemsCount={40}
+        pageRangeDisplayed={5}
+
+      />
     </div>
   </div>
 );
