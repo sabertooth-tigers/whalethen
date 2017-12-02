@@ -6,9 +6,10 @@ const SearchListEntry = (props) => {
     event,
     numberOfDays,
     addNewEvent,
-    onDaySelect,
+    onCreateDaySelect,
     selectedDay,
     getTrip,
+    saveEvent,
   } = props;
 
   const daysArr = ['Choose Day'];
@@ -23,7 +24,7 @@ const SearchListEntry = (props) => {
       <div className="eventRating">{event.rating}</div>
 
       <div>
-        <select className="selectDays" onChange={onDaySelect}>
+        <select className="selectDays" onChange={({ target }) => onCreateDaySelect(target.value)}>
           {daysArr.map(day => <option value={day} key={day}>{day}</option>)}
         </select>
       </div>
@@ -31,7 +32,7 @@ const SearchListEntry = (props) => {
       <div>
         <button
           className="addEvent"
-          onClick={() => addNewEvent(event, getTrip)}
+          onClick={() => saveEvent(event, props)}
         >
             Add Event
         </button>

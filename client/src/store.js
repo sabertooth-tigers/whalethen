@@ -1,4 +1,5 @@
-import { createStore, applyMiddleware } from 'redux';
+/* eslint-disable */
+import { createStore, applyMiddleware, compose } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
@@ -19,9 +20,20 @@ const appState = {
   newEventAddress: '',
 };
 
+const searchState = {
+  locationSearch: '',
+  termBar: '',
+  searchList: [],
+  selectedDay: '',
+};
+
 const state = {
   appState,
+  searchState,
 };
+
+const enhancers = compose(window.devToolsExtension ? window.devToolsExtension() : f => f);
+const store = createStore(rootReducer, state, enhancers, applyMiddleware(thunk));
 
 if (module.hot) {
   module.hot.accept('./reducers/', () => {
@@ -30,4 +42,6 @@ if (module.hot) {
   });
 }
 
-export default createStore(rootReducer, state, applyMiddleware(thunk));
+
+
+export default store;

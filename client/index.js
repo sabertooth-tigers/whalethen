@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 
 import store from './src/store';
 
-const Main = () => (
-	<Provider store={store}>
-		<App />
-	</Provider>
+const Main = (
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
-ReactDOM.render(<Main />, document.getElementById('app'));
+ReactDOM.render(Main, document.getElementById('app'));

@@ -1,9 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import propTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import SearchList from './SearchList';
 import Data from '../../sampleData';
+import * as actionCreators from './actions/actionCreator';
 
 class Search extends React.Component {
   constructor(props) {
@@ -24,6 +27,8 @@ class Search extends React.Component {
   onSubmit() {
     axios.get('/search', { params: { category: this.state.termBar, location: this.state.locationSearch } })
       .then(({ data }) => {
+        console.log(data);
+
         this.setState({
           searchList: data,
         });
@@ -80,4 +85,9 @@ Search.propTypes = {
   addNewEvent: propTypes.func.isRequired,
 };
 
-export default Search;
+
+const mapStateToProps = ({ searchState }) => ({ ...searchState });
+
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
