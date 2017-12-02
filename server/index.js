@@ -46,6 +46,7 @@ app.post('/entry', ({ body }, response) => {
 });
 
 app.put('/entry', ({ body }, response) => {
+  console.log(body);
   db.updateVotes(body.timelineId, body.day, body.eventId, body.votes)
     .then(() => response.sendStatus(200))
     .tapCatch(err => console.error(err))
@@ -59,8 +60,9 @@ app.delete('/entry/:id', (request, response) => {
 
 app.get('/search', (request, response) => {
   let { category, location } = request.query;
-  location = location || 'hotels';
-  category = category || 'san francisco';
+  location = location || 'san francisco';
+  category = category || 'hotels';
+
   // for triggering a search to the search api
   api.placesApi(location, category)
     .then((result) => {

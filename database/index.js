@@ -34,14 +34,15 @@ const daySchema = mongoose.Schema({
 const Day = mongoose.model('Day', daySchema);
 const Event = mongoose.model('Event', eventSchema);
 
-const updateVotes = (timelineId, day, eventId, votes) => Day.findAsync({
+const updateVotes = (timelineId, day, eventId, votes) => Day.findOneAndUpdateAsync({
   day,
   timelineId,
-})
+}, { votes })
   .then((results) => {
-    const event = results[0].events.id(eventId);
+    const event = results.events.id(eventId);
+    console.log(event);
     event.votes = votes;
-    return results[0].saveAsync();
+    return results.saveAsync();
   });
 
 const addNewTimeline = (timelineId, numberOfDays, timelineName) => {
