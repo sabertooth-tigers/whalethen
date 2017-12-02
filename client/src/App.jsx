@@ -10,6 +10,16 @@ import Home from './Home';
 import TimelineComp from './TimelineComp';
 
 class App extends React.Component {
+  componentDidMount() {
+    if (annyang) {
+      const commands = {
+        'testing': () => console.log('We wrote tests for everything.'),
+      };
+      annyang.addCommands(commands);
+      annyang.start();
+    }
+  }
+
   render() {
     const {
       timelineName,
