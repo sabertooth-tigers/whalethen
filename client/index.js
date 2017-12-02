@@ -6,10 +6,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { render } from 'react-dom';
 import store from './src/store';
 import Main from './src/Main';
+import { HashRouter } from 'react-router-dom';
 
 ReactDOM.render((
   <Provider store={store}>
-    <BrowserRouter>
+    <HashRouter>
       <Main />
-    </BrowserRouter>
+    </HashRouter>
   </Provider>), document.getElementById('app'));

@@ -6,29 +6,27 @@ import Timeline from './Timeline';
 import * as actionCreators from './actions/actionCreator';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
-import TimelineComp from './TimelineComp';
 
-class App extends React.Component {
+// const TimelineComp = () => (
+//   <div>
+//     <Timeline {...this.props} />
+//     <Search {...this.props} />
+//   </div>
+// );
+
+class TimelineComp extends React.Component {
   render() {
-    const {
-      timelineName,
-      timelineId,
-    } = this.props;
-
     return (
       <div className="App">
-        <Switch>
-          <Route exact path="/" component={TimelineComp} />
-          <Route path="/timeline/" component={TimelineComp} />
-        </Switch>
+        <Timeline {...this.props} />
+        <Search {...this.props} />
       </div>
     );
   }
 }
 
-
 const mapStateToProps = ({ appState }) => ({ ...appState });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(TimelineComp);
