@@ -9,8 +9,8 @@
     <script src="node_modules/lodash/lodash.js"></script>
     <script src="node_modules/mocha/mocha.js"></script>
     <script src="node_modules/chai/chai.js"></script>
-    <script src="node_modules/enzyme/withDom.js"></script>
-    <script src="node_modules/enzyme/build/index.js"></script>
+    <!-- <script src="node_modules/enzyme/withDom.js"></script>
+    <script src="node_modules/enzyme/build/index.js"></script> -->
     <script>
       mocha.setup('bdd');
       window.expect = chai.expect;
@@ -34,7 +34,9 @@
     <script src="compiled/TimelineInputBox.js"></script>
     <script src="compiled/TimelineLookUp.js"></script> -->
     <!-- tests -->
+    <script src="client/spec/components/actionSpec.js"></script>
     <script src="client/spec/components/AppSpec.js"></script>
+    <script src="client/spec/components/reducerSpec.js"></script>
   </head>
   <body>
     <div id="mocha"></div>

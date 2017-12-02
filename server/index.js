@@ -24,15 +24,15 @@ app.use(express.static(`${__dirname}/../client/`));
 
 app.options('/', (request, response) => response.json('GET,POST,PUT,GET'));
 
-app.get('/timeline/:timelineName/:timelineId', (request, response) => {
-  db.getTimelineById(request.params.timelineId)
+app.get('/timeline/:timelineId', ({ params }, response) => {
+  db.getTimelineById(params.timelineId)
     .then(timeline => response.json(timeline))
     .tapCatch(err => console.error(err))
     .catch(() => response.status(409).end());
 });
 
 app.post('/timeline', ({ body }, response) => {
-  db.addNewTimeline(body.timelineId, body.numberOfDays)
+  db.addNewTimeline(body.timelineId, body.numberOfDays, body.timelineName)
     .then(() => response.sendStatus(200))
     .tapCatch(err => console.error(err))
     .catch(() => response.sendStatus(409));
@@ -58,7 +58,9 @@ app.delete('/entry/:id', (request, response) => {
 });
 
 app.get('/search', (request, response) => {
-  const { category, location } = request.query;
+  let { category, location } = request.query;
+  location = location || 'hotels';
+  category = category || 'san francisco';
   // for triggering a search to the search api
   api.placesApi(location, category)
     .then((result) => {
@@ -68,7 +70,7 @@ app.get('/search', (request, response) => {
     .catch(() => response.sendStatus(409));
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3002;
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);

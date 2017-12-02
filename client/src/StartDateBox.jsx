@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-const StartDateBox = ({ onInput, onEnter }) => (
+const StartDateBox = ({ onInputChange, onEnter }) => (
   <div className="inputBox label">
     <label className="startDate" htmlFor="startDate">
     Start Date:
@@ -9,9 +9,8 @@ const StartDateBox = ({ onInput, onEnter }) => (
       id="startDate"
       type="date"
       name="startDate"
-      onChange={event => onInput(event)}
+      onChange={({ target }) => onInputChange(target.name, target.value)}
       placeholder="enter a start date"
-      onKeyUp={event => onEnter(event)}
     />
     </label>
   </div>

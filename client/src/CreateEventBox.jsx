@@ -5,13 +5,19 @@ const CreateEventBox = (props) => {
   const {
     numberOfDays,
     onCreateDaySelect,
-    onCreateEnter,
-    handleNewEvent,
-    handleNewAddress,
-    createEvent,
+    setNewEvent,
+    setNewEventAddress,
+    newEvent,
+    newEventAddress,
+    createEventDay,
+    addNewEvent,
+    getTrip,
+    saveEvent,
   } = props;
 
   const daysArr = ['Choose Day'];
+  const isEnter = (key, value) => key === 'Enter' ? getTrip(value) : 1;
+
   for (let i = 1; i <= numberOfDays; i += 1) {
     daysArr.push(`Day ${i}`);
   }
@@ -25,7 +31,8 @@ const CreateEventBox = (props) => {
             type="text"
             name="createEventName"
             placeholder="enter an event"
-            onChange={handleNewEvent}
+            onChange={({ target }) => setNewEvent(target.value)}
+            onKeyUp={({ key, target }) => isEnter(key, target.value)}
           />
         </span>
         <span>
@@ -34,13 +41,13 @@ const CreateEventBox = (props) => {
             type="text"
             name="createEventAddress"
             placeholder="enter an address"
-            onChange={handleNewAddress}
-            onKeyUp={event => onCreateEnter(event)}
+            onChange={({ target }) => setNewEventAddress(target.value)}
+            onKeyUp={({ key, target }) => isEnter(key, target.value)}
           />
         </span>
 
         <span>
-          <select className="selectDays" onChange={onCreateDaySelect}>
+          <select className="selectDays" onChange={({ target }) => onCreateDaySelect(target.value )}>
             {daysArr.map(day => <option value={day} key={day}>{day}</option>)}
           </select>
         </span>
@@ -48,7 +55,11 @@ const CreateEventBox = (props) => {
         <span>
           <button
             className="addEvent"
-            onClick={createEvent}
+            onClick={() => saveEvent({
+              name: newEvent,
+              address: newEventAddress,
+              vote: 0,
+            }, props)}
           >
                 Create Event
           </button>
