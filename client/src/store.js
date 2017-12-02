@@ -41,7 +41,7 @@ const searchState = {
 };
 
 const eventState = {
-  votes: 0,
+  votes: {},
 };
 
 const state = {

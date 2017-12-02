@@ -23,19 +23,21 @@ class Events extends React.Component {
   }
   componentDidMount() {
     const { event, setVote } = this.props;
-    setVote(event.votes);
+    setVote(event.votes || 0, event._id);
+    this.votes = this.props.vote;
+    console.log(this.props.vote);
   }
   render() {
-    const { upvote, downvote } = this.props;
+    const { upvote, downvote, event } = this.props;
     
 
     return (
       <div className="event">
         <div className="eventName">{this.props.event.name}</div>
         <div className="description">{this.props.event.address}</div>
-        <span className="vote">{` Votes: ${this.props.vote}   `}
-          <button className="votes" onClick={downvote}>-</button>
-          <button className="votes" onClick={upvote}>+</button>
+        <span className="vote">{` Votes: ${this.props.vote ? this.props.vote[event._id] : 1}`}
+          <button className="votes" onClick={() => downvote(event._id)}>-</button>
+          <button className="votes" onClick={() => upvote(event._id)}>+</button>
         </span>
       </div>
     );
