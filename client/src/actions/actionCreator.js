@@ -134,3 +134,28 @@ export const getEntries = ({ termBar, locationSearch }) => dispatch =>
         data,
       })))
     .catch(err => console.error(err));
+
+// ==============================================
+// EVENT ACTIONS
+// ==============================================
+
+export const setVote = (vote, id) => ({
+  type: 'SET_VOTE',
+  vote,
+  id,
+});
+
+export const saveVote = ({
+  timelineId,
+  day,
+  event,
+  vote,
+}, count) => dispatch =>
+  axios.put('/entry', {
+    timelineId,
+    day: day.day,
+    eventId: event._id,
+    votes: vote[event._id] + count,
+  })
+    .then(() => setVote(vote[event._id] + count, event._id))
+    .then(dispatch);

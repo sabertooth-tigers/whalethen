@@ -1,14 +1,13 @@
 export default (state = {}, action) => {
   switch (action.type) {
-    case 'INCREMENT_VOTE':
+    case 'SET_VOTE':
+      console.log(action);
       return {
         ...state,
-        vote: state.vote + 1,
-      };
-    case 'DECREMENT_VOTE':
-      return {
-        ...state,
-        vote: state.vote - 1,
+        vote: {
+          ...state.vote,
+          [action.id]: action.vote,
+        },
       };
     default:
       return state;

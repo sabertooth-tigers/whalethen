@@ -40,9 +40,14 @@ const searchState = {
   selectedDay: '',
 };
 
+const eventState = {
+  votes: {},
+};
+
 const state = {
   appState,
   searchState,
+  eventState,
 };
 
 const enhancers = compose(window.devToolsExtension ? window.devToolsExtension() : f => f);

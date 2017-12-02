@@ -1,43 +1,43 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from './actions/actionCreator';
 
+// TODO: FIX SYNCHRONIZED VOTING AFTER REDUXIFYNG IT\
 class Events extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      votes: this.props.event.votes,
-    };
-    this.updateVotes = this.updateVotes.bind(this);
+
     this.patchVotesInDB = this.patchVotesInDB.bind(this);
   }
+
   patchVotesInDB() {
     axios.put('/entry', {
       timelineId: this.props.timelineId,
       day: this.props.day.day,
       eventId: this.props.event._id,
-      votes: this.state.votes,
+      votes: this.props.votes,
     });
   }
-  updateVotes(e) {
-    if (e.target.value === '+') {
-      this.setState({
-        votes: this.state.votes += 1,
-      }, this.patchVotesInDB);
-    } else {
-      this.setState({
-        votes: this.state.votes -= 1,
-      }, this.patchVotesInDB);
-    }
+  componentDidMount() {
+    const { event, setVote } = this.props;
+    setVote(event.votes || 0, event._id);
+    this.votes = this.props.vote;
+    console.log(this.props.vote);
   }
   render() {
+    const { upvote, downvote, saveVote, event } = this.props;
+    
+
     return (
       <div className="event">
         <div className="eventName">{this.props.event.name}</div>
         <div className="description">{this.props.event.address}</div>
-        <span className="vote">{` Votes: ${this.state.votes}   `}
-          <button className="votes" value="-" onClick={this.updateVotes}>-</button>
-          <button className="votes" value="+" onClick={this.updateVotes}>+</button>
+        <span className="vote">{` Votes: ${this.props.vote ? this.props.vote[event._id] : 0}`}
+          <button className="votes" onClick={() => saveVote(this.props, -1)}>-</button>
+          <button className="votes" onClick={() => saveVote(this.props, 1)}>+</button>
         </span>
       </div>
     );
@@ -50,4 +50,8 @@ Events.propTypes = {
   timelineId: propTypes.string.isRequired,
 };
 
-export default Events;
+const mapStateToProps = ({ eventState }) => ({ ...eventState });
+
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Events);
