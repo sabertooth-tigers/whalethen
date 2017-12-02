@@ -62,9 +62,9 @@ export const saveTimeline = (event, getTrip) => ({
 });
 
 /**
- * getTrip is a query to the mongoDB and find a user created timelineId and
- * return
+ * getTrip is a query to the mongoDB and find a user created timelineId
  * @param  {[number]} timelineId Is a unique ID to query the DB and return the saved timeline
+ * @return {object} On return data will be set to the appState reducer and set the state
  */
 
 export const getTrip = timelineId => dispatch =>
