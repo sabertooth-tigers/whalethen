@@ -1,11 +1,11 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import SearchEntry from './SearchEntry';
-
+import _ from 'lodash';
 
 const SearchList = props => (
   <div className="searchList">
-    {props.searchList.map((event, index) => (
+    {_.map(props.searchList, (event, index) => (
       <SearchEntry
         {...props}
         key={index}

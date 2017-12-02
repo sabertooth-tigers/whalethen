@@ -9,8 +9,6 @@ const CreateEventBox = (props) => {
     setNewEventAddress,
     newEvent,
     newEventAddress,
-    createEventDay,
-    addNewEvent,
     getTrip,
     saveEvent,
   } = props;
@@ -47,7 +45,10 @@ const CreateEventBox = (props) => {
         </span>
 
         <span>
-          <select className="selectDays" onChange={({ target }) => onCreateDaySelect(target.value )}>
+          <select
+            className="selectDays"
+            onChange={({ target }) => onCreateDaySelect(target.value)}
+          >
             {daysArr.map(day => <option value={day} key={day}>{day}</option>)}
           </select>
         </span>
@@ -72,10 +73,12 @@ const CreateEventBox = (props) => {
 CreateEventBox.propTypes = {
   numberOfDays: propTypes.number.isRequired,
   onCreateDaySelect: propTypes.func.isRequired,
-  onCreateEnter: propTypes.func.isRequired,
-  handleNewEvent: propTypes.func.isRequired,
-  handleNewAddress: propTypes.func.isRequired,
-  createEvent: propTypes.func.isRequired,
+  getTrip: propTypes.func.isRequired,
+  setNewEvent: propTypes.func.isRequired,
+  setNewEventAddress: propTypes.func.isRequired,
+  saveEvent: propTypes.func.isRequired,
+  newEvent: propTypes.string.isRequired,
+  newEventAddress: propTypes.string.isRequired,
 };
 
 export default CreateEventBox;

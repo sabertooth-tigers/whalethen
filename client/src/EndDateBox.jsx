@@ -24,8 +24,8 @@ const EndDateBox = props => (
 );
 
 EndDateBox.propTypes = {
-  onInput: propTypes.func.isRequired,
-  onEnter: propTypes.func.isRequired,
+  onInputChange: propTypes.func.isRequired,
+  savingTimeline: propTypes.func.isRequired,
 };
 
 export default EndDateBox;
