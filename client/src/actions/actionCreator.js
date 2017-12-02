@@ -122,27 +122,23 @@ export const getEntries = ({ termBar, locationSearch }) => dispatch =>
 // EVENT ACTIONS
 // ==============================================
 
-export const upvote = (id) => ({
-  type: 'INCREMENT_VOTE',
-  id,
-});
-
-export const downvote = (id) => ({
-  type: 'DECREMENT_VOTE',
-  id,
-});
-
 export const setVote = (vote, id) => ({
   type: 'SET_VOTE',
   vote,
   id,
 });
 
-export const saveVote = (props, count) => dispatch =>
+export const saveVote = ({
+  timelineId,
+  day,
+  event,
+  vote,
+}, count) => dispatch =>
   axios.put('/entry', {
-    timelineId: props.timelineId,
-    day: props.day.day,
-    eventId: props.event._id,
-    votes: props.vote + count,
+    timelineId,
+    day: day.day,
+    eventId: event._id,
+    votes: vote[event._id] + count,
   })
-    .then(console.log);
+    .then(() => setVote(vote[event._id] + count, event._id))
+    .then(dispatch);
