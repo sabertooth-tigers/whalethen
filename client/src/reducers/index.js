@@ -9,4 +9,9 @@ import eventState from './EventReducers';
 import searchState from './SearchReducers';
 
 
-export default combineReducers({ events, appState, searchState, eventState });
+export default combineReducers({
+  events,
+  appState,
+  searchState,
+  eventState,
+});
