@@ -8,16 +8,16 @@ const SearchBar = props => (
       type="text"
       placeholder="location"
       onChange={({ target }) => props.setLocation(target.value)}
-      onKeyUp={event => props.onEnter(event)}
+      onKeyUp={({ key }) => key === 'Enter' ?  props.getEntries(props) : 1}
     />
     <input
       id="category"
       type="text"
       placeholder="category"
       onChange={({ target }) => props.setCategory(target.value)}
-      onKeyUp={event => props.onEnter(event)}
+      onKeyUp={({ key }) => key === 'Enter' ?  props.getEntries(props) : 1}
     />
-    <button className="searchSubmit" onClick={props.onSubmit}>Search</button>
+    <button className="searchSubmit" onClick={() => props.getEntries(props)}>Search</button>
   </div>
 );
 

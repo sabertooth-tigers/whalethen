@@ -61,7 +61,6 @@ app.get('/search', (request, response) => {
   let { category, location } = request.query;
   location = location || 'hotels';
   category = category || 'san francisco';
-
   // for triggering a search to the search api
   api.placesApi(location, category)
     .then((result) => {
