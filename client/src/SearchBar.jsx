@@ -13,10 +13,6 @@ const SearchBar = (props) => {
     }
   };
 
-  const style = {
-    marginTop: 12,
-  }
-
   return (
     <div className="searchBar">
       Search for things to do
@@ -42,7 +38,7 @@ const SearchBar = (props) => {
         <RaisedButton 
           label="Search" 
           backgroundColor="#3F51B5" 
-          style={style} 
+          className="search-places-button"
           labelColor="#FFF"
           icon={<MapsPlace />}
           onClick={() => getEntries(props)}
