@@ -181,7 +181,7 @@ input {
   display: flex;
   grid-area: createTimeline;
   justify-content: space-around;
-  background-color: #9CCEFF;
+  background-color: #fff;
 }
 
 /* .timelineParams button {
