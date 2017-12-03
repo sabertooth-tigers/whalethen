@@ -12,7 +12,7 @@ const styles = {
     borderColor: indigo500,
   },
   floatingLabelStyle: {
-    color: indigo500,
+    color: teal500,
   },
   floatingLabelFocusStyle: {
     color: teal500,

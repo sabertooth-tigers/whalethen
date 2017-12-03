@@ -3,6 +3,8 @@ import propTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import { indigo500, teal500 } from 'material-ui/styles/colors';
+import RaisedButton from 'material-ui/RaisedButton';
+import ActionEvent from 'material-ui/svg-icons/action/event';
 
 const TimelineLookUp = (props) => {
   const {
@@ -41,13 +43,13 @@ const TimelineLookUp = (props) => {
           name="timelineLookUp"
           onChange={({ target }) => setId(target.value)}
           floatingLabelText="Enter a previous timeline ID"
-          floatingLabelStyle={styles.floatingLabelStyle}
-          floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+        />
+        <RaisedButton
+          label="Load"
+          icon={<ActionEvent />}
+          onClick={() => getTrip(timelineId)}
         />
       </MuiThemeProvider>
-      <label className="timelineLookUp label" htmlFor="timelineLookUp">
-        <button className="searchSubmit" onClick={() => getTrip(timelineId)}>Search ID</button>
-      </label>
     </div>
   );
 };

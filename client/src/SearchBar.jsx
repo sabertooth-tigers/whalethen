@@ -2,6 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import MapsPlace from 'material-ui/svg-icons/maps/place';
 
 const SearchBar = (props) => {
   const { setLocation, getEntries, setCategory } = props;
@@ -10,6 +12,10 @@ const SearchBar = (props) => {
       props.getEntries(props);
     }
   };
+
+  const style = {
+    marginTop: 12,
+  }
 
   return (
     <div className="searchBar">
@@ -33,9 +39,15 @@ const SearchBar = (props) => {
           floatingLabelText="Category"
           floatingLabelFixed={true}
         />
+        <RaisedButton 
+          label="Search" 
+          backgroundColor="#3F51B5" 
+          style={style} 
+          labelColor="#FFF"
+          icon={<MapsPlace />}
+          onClick={() => getEntries(props)}
+        />
       </MuiThemeProvider>
-      <button className="searchSubmit" onClick={() => getEntries(props)}>Search</button>
-
     </div>);
 };
 

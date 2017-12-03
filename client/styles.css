@@ -162,7 +162,7 @@ input {
 
 .createBox {
   grid-area: createbox;
-  background-color: #9CCEFF;
+  background-color: #E0F2F1;
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
