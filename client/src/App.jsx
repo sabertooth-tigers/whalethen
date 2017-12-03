@@ -9,6 +9,7 @@ import Home from './Home';
 import TimelineComp from './TimelineComp';
 
 class App extends React.Component {
+
   render() {
     const {
       timelineName,

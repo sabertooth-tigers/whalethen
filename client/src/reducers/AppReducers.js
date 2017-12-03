@@ -5,6 +5,11 @@ export default (state = {}, action) => {
         ...state,
         [action.name]: action.value,
       };
+    case 'SET_DATE_RANGE':
+      return {
+        ...state,
+        dayCount: action.dayCount,
+      };
     case 'SET_TIMELINE_DATA':
       return {
         ...state,

@@ -25,6 +25,11 @@ export const onInputChange = (name, value) => ({
   value,
 });
 
+export const setDateRange = dayCount => ({
+  type: 'SET_DATE_RANGE',
+  dayCount,
+});
+
 export const setId = id => ({
   type: 'SET_ID',
   id,
@@ -89,6 +94,7 @@ export const getTrip = timelineId => dispatch =>
  * @param  {[array]} createEventDay Specefic index for an event to be saved to
  */
 
+//Deprecated
 export const saveEvent = (event, { timelineId, timelineName, createEventDay }) => dispatch =>
   axios.post('/entry', {
     event,
@@ -100,6 +106,7 @@ export const saveEvent = (event, { timelineId, timelineName, createEventDay }) =
     .then(dispatch)
     .catch(err => console.error('add event error: ', err));
 
+//Deprecated
 export const savingTimeline = ({ timelineName, startDate, endDate }, timelineId) => dispatch =>
   axios.post('/timeline', {
     timelineId,
@@ -107,6 +114,18 @@ export const savingTimeline = ({ timelineName, startDate, endDate }, timelineId)
     numberOfDays: moment(endDate).diff(moment(startDate), 'days'),
   })
     .then(() => setDays(moment(endDate).diff(moment(startDate), 'days')))
+    .then(() => setId(timelineId))
+    .then(() => getTrip(timelineId))
+    .then(dispatch)
+    .catch(err => console.error('error in submit ', err));
+
+export const savingTimelineRange = ({ timelineName, dayCount }, timelineId) => dispatch =>
+  axios.post('/timeline', {
+    timelineId,
+    timelineName,
+    numberOfDays: dayCount,
+  })
+    .then(() => setDays(dayCount))
     .then(() => setId(timelineId))
     .then(() => getTrip(timelineId))
     .then(dispatch)
