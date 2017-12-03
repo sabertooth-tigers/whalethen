@@ -7,7 +7,7 @@ const EndDateBox = (props) => {
     <div className="inputBox label">
       <button
         className="scheduleSubmit"
-        onClick={() => props.savingTimelineRange(props, shortid.generate(), console.log('props!', props))}
+        onClick={() => props.savingTimelineRange(props, shortid.generate())}
       >
         New Schedule
       </button>
