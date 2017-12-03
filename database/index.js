@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Promise = require('bluebird');
 const mongo = require('mongodb');
-// require('dotenv').config();
+require('dotenv').config();
 
 Promise.promisifyAll(mongoose);
 Promise.promisifyAll(mongo);
