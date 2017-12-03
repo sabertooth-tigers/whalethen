@@ -20,7 +20,7 @@ class App extends React.Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={TimelineComp} />
-          <Route path="/timeline/" component={TimelineComp} />
+          <Route path="/:id" component={TimelineComp} />
         </Switch>
       </div>
     );

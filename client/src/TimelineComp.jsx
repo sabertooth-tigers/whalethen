@@ -7,14 +7,24 @@ import * as actionCreators from './actions/actionCreator';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
 
-// const TimelineComp = () => (
-//   <div>
-//     <Timeline {...this.props} />
-//     <Search {...this.props} />
-//   </div>
-// );
-
 class TimelineComp extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props.match.params.id);
+    const {
+      getTrip,
+      timelineId,
+
+    } = this.props;
+    // this.props.router.push(this.props.match.params.id)
+    getTrip(this.props.match.params.id);
+  }
+
+  componentWillRecieveProps() {
+
+  }
+
+
   render() {
     return (
       <div className="App">

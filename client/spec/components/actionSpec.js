@@ -2,8 +2,8 @@
 describe('Actions', () => {
 
   describe('Event' , () => {
-    xit('Should be able to Add an event', ()=> {
-
+    it('Should be able to Add an event', ()=> {
+      expect(1).to.equal(0);
     });
 
     xit('Should not mutate the state when adding event', ()=> {
@@ -12,11 +12,11 @@ describe('Actions', () => {
   });
 
   describe('Voting', () => {
-    it('Should be able to remove an event', ()=> {
+    xit('Should be able to remove an event', ()=> {
 
     });
 
-    it('Should not mutate the state when removing an event', ()=> {
+    xit('Should not mutate the state when removing an event', ()=> {
 
     });
   });
