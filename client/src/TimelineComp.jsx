@@ -20,11 +20,6 @@ class TimelineComp extends React.Component {
     getTrip(this.props.match.params.id);
   }
 
-  componentWillRecieveProps() {
-
-  }
-
-
   render() {
     return (
       <div className="App">
