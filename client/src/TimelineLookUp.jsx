@@ -1,5 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import ActionEvent from 'material-ui/svg-icons/action/event';
 
 const TimelineLookUp = (props) => {
   const {
@@ -16,18 +20,20 @@ const TimelineLookUp = (props) => {
 
   return (
     <div className="inputBox">
-      <label className="timelineLookUp label" htmlFor="timelineLookUp">
-        Timeline Look Up:
-      <input
-        id="timelineLookUp"
-        type="text"
-        name="timelineLookUp"
-        onChange={({ target }) => setId(target.value)}
-        placeholder="enter ID"
-        onKeyUp={({ key, target }) => isEnter(key, target.value)}
-      />
-        <button className="searchSubmit" onClick={() => getTrip(timelineId)}>Search ID</button>
-      </label>
+      <MuiThemeProvider>
+        <TextField
+          id="timelineLookUp"
+          type="text"
+          name="timelineLookUp"
+          onChange={({ target }) => setId(target.value)}
+          floatingLabelText="Enter a previous timeline ID"
+        />
+        <RaisedButton
+          label="Load"
+          icon={<ActionEvent />}
+          onClick={() => getTrip(timelineId)}
+        />
+      </MuiThemeProvider>
     </div>
   );
 };

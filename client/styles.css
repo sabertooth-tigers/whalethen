@@ -162,7 +162,7 @@ input {
 
 .createBox {
   grid-area: createbox;
-  background-color: #9CCEFF;
+  background-color: #E0F2F1;
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
@@ -181,7 +181,7 @@ input {
   display: flex;
   grid-area: createTimeline;
   justify-content: space-around;
-  background-color: #9CCEFF;
+  background-color: #fff;
 }
 
 /* .timelineParams button {
@@ -222,6 +222,9 @@ input {
 }
 
 
+.search-places-button {
+  margin-top: 18px;
+}
 
 
 

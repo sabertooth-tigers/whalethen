@@ -1,5 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+import ActionNoteAdd from 'material-ui/svg-icons/action/note-add';
 
 const CreateEventBox = (props) => {
   const {
@@ -24,24 +28,28 @@ const CreateEventBox = (props) => {
     <div className="container createBox label">
       <label className="createEvent" htmlFor="createEvent">
         <span>
-          <input
-            id="createEventName"
-            type="text"
-            name="createEventName"
-            placeholder="enter an event"
-            onChange={({ target }) => setNewEvent(target.value)}
-            onKeyUp={({ key, target }) => isEnter(key, target.value)}
-          />
-        </span>
-        <span>
-          <input
-            id="createEventAddress"
-            type="text"
-            name="createEventAddress"
-            placeholder="enter an address"
-            onChange={({ target }) => setNewEventAddress(target.value)}
-            onKeyUp={({ key, target }) => isEnter(key, target.value)}
-          />
+          <MuiThemeProvider>
+            <TextField
+              id="createEventName"
+              type="text"
+              name="createEventName"
+              onChange={({ target }) => setNewEvent(target.value)}
+              onKeyUp={({ key, target }) => isEnter(key, target.value)}
+              hintText="Add an event to the timeline"
+              floatingLabelText="Event Title"
+              floatingLabelFixed={true}
+            />
+            <TextField
+              id="createEventAddress"
+              type="text"
+              name="createEventAddress"
+              onChange={({ target }) => setNewEventAddress(target.value)}
+              onKeyUp={({ key, target }) => isEnter(key, target.value)}
+              hintText="Description, address, etc..."
+              floatingLabelText="Event Details"
+              floatingLabelFixed={true}
+            />
+          </MuiThemeProvider>
         </span>
 
         <span>
@@ -54,16 +62,16 @@ const CreateEventBox = (props) => {
         </span>
 
         <span>
-          <button
-            className="addEvent"
-            onClick={() => saveEvent({
-              name: newEvent,
-              address: newEventAddress,
-              vote: 0,
-            }, props)}
-          >
-                Create Event
-          </button>
+          <MuiThemeProvider>
+            <FlatButton
+              icon={<ActionNoteAdd />}
+              onClick={() => saveEvent({
+                name: newEvent,
+                address: newEventAddress,
+                vote: 0,
+              }, props)}
+            />
+          </MuiThemeProvider>
         </span>
       </label>
     </div>

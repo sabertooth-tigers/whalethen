@@ -38,7 +38,6 @@ class Events extends React.Component {
         <div className="voteWrap">
           <span className="vote">{` Votes: ${this.props.vote ? this.props.vote[event._id] : 0}`}
             <button className="votes" onClick={() => saveVote(this.props, -1)}>-</button>
-            <span className="vote">{` ${this.state.votes} Votes   `}</span>
             <button className="votes" onClick={() => saveVote(this.props, 1)}>+</button>
           </span>
         </div>

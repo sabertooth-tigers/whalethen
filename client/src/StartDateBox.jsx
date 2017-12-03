@@ -3,6 +3,9 @@ import React from 'react';
 import propTypes from 'prop-types';
 import InfiniteCalendar, { Calendar, withRange } from 'react-infinite-calendar';
 import moment from 'moment';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+import NotificationEventNote from 'material-ui/svg-icons/notification/event-note';
 
 class StartDateBox extends React.Component {
   constructor(props) {
@@ -72,7 +75,14 @@ class StartDateBox extends React.Component {
     };
     return (
       <div>
-        <button onClick={this.handleButtonClick}>Or say "Pick a Date"</button>
+        <MuiThemeProvider>
+          <RaisedButton
+            label="Select or say pick-a-date"
+            labelColor="#009688"
+            icon={<NotificationEventNote />}
+            onClick={this.handleButtonClick}
+          />
+        </MuiThemeProvider>
         {this.state.displayCalendar && cal}
         {this.state.displayCalendar && reply()}
         {this.state.showDuration && showDuration}
