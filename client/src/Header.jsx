@@ -44,6 +44,7 @@ class Header extends React.Component {
               using window.loc... it'll append a second time
               */}
               <RaisedButton
+                className="copy-button"
                 label="COPY URL"
                 backgroundColor="#009688"
                 labelColor="#FFF"
