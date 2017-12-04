@@ -6,8 +6,8 @@ body {
 
 .App {
   display: grid;
-  grid-template-columns: 4fr 1fr;
-  grid-template-rows: 0.20fr 0.20fr 0.20fr 5fr;
+  grid-template-columns: 4fr .2fr;
+  grid-template-rows: 0.00fr 0.05fr 0.05fr 2fr;
   grid-template-areas: "navbar navbar" "createTimeline createbox" "lookupTimeline search" "timeline search";
 }
 
@@ -115,11 +115,13 @@ body {
 }
 
 .title {
-  display: grid;
-  grid-column-start: 1;
+  /* display: grid; */
+  /* grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
-  grid-row-end: 2;
+  grid-row-end: 2; */
+  display: flex;
+  align-items: baseline;
   text-align: center;
   font-size: 45pt;
   font-weight: bold;
@@ -137,10 +139,12 @@ body {
 }
 
 .inputBox {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-around;
-  padding: 2px;
+  /* display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: right; */
+  float: right;
+  padding-left: 40px;
 }
 
 input {
@@ -182,6 +186,11 @@ input {
   grid-area: createTimeline;
   justify-content: space-around;
   background-color: #fff;
+}
+.timeline-create {
+  display: flex;
+  justify-content: right;
+  align-items: center;
 }
 
 /* .timelineParams button {
