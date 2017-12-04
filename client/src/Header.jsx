@@ -14,7 +14,7 @@ import { Switch, Route } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import NotificationEventAvailable from 'material-ui/svg-icons/notification/event-available';
+import ContentContentPaste from 'material-ui/svg-icons/content/content-paste';
 
 
 class Header extends React.Component {
@@ -27,7 +27,9 @@ class Header extends React.Component {
     } = this.props;
     return (
       <div>
-        <div className="title">WhaleThen</div>
+        <div className="title">WhaleThen
+          <TimelineLookUp {...this.props} />
+        </div>
         <br />
         <div className="container timelineParams">
           <div className="label">TimeLine Name:</div>
@@ -49,21 +51,23 @@ class Header extends React.Component {
               */}
               <RaisedButton
                 className="copy-button"
-                label="COPY URL"
+                label="COPY Link"
                 backgroundColor="#009688"
                 labelColor="#FFF"
-                icon={<NotificationEventAvailable />}
+                icon={<ContentContentPaste />}
                 onClick={this.onClick}
               />
             </CopyToClipboard>
           </MuiThemeProvider>
 
-          <TimelineName {...this.props} />
-          <StartDateBox {...this.props} />
-          <EndDateBox {...this.props} />
+          <div className="timeline-create">
+            <TimelineName {...this.props} />
+            <StartDateBox {...this.props} />
+            <EndDateBox {...this.props} />
+          </div>
         </div>
         <CreateEventBox {...this.props} />
-        <TimelineLookUp {...this.props} />
+
       </div>
     );
   }
