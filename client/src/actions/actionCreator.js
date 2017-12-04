@@ -30,6 +30,11 @@ export const setDateRange = dayCount => ({
   dayCount,
 });
 
+export const setCopyValue = value => ({
+  type: 'SET_COPIED_VALUE',
+  value,
+});
+
 export const setId = id => ({
   type: 'SET_ID',
   id,
@@ -94,7 +99,7 @@ export const getTrip = timelineId => dispatch =>
  * @param  {[array]} createEventDay Specefic index for an event to be saved to
  */
 
-//Deprecated
+// Deprecated
 export const saveEvent = (event, { timelineId, timelineName, createEventDay }) => dispatch =>
   axios.post('/entry', {
     event,
@@ -106,7 +111,7 @@ export const saveEvent = (event, { timelineId, timelineName, createEventDay }) =
     .then(dispatch)
     .catch(err => console.error('add event error: ', err));
 
-//Deprecated
+// Deprecated
 export const savingTimeline = ({ timelineName, startDate, endDate }, timelineId) => dispatch =>
   axios.post('/timeline', {
     timelineId,
