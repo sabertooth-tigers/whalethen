@@ -40,6 +40,11 @@ export default (state = {}, action) => {
         ...state,
         newEventAddress: action.address,
       };
+    case 'SET_COPIED_VALUE':
+      return {
+        ...state,
+        clipBoardValue: action.value,
+      };
     case 'GET_TRIP':
       const { data } = action;
       const { timelineId, timelineName } = data[0];

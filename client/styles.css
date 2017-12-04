@@ -771,3 +771,7 @@ input {
     text-transform: capitalize; }
   .Cal__Month__label.Cal__Month__partialFirstRow {
     top: 56px; }
+
+.copy-button {
+  height: 12px;
+}
