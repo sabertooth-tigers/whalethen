@@ -23,7 +23,7 @@ class StartDateBox extends React.Component {
   componentDidMount() {
     if (annyang) {
       const commands = {
-        'pick a date': () => this.setState({ displayCalendar: !this.state.displayCalendar }),
+        andrew: () => this.setState({ displayCalendar: !this.state.displayCalendar }),
       };
       annyang.addCommands(commands);
       annyang.start();
@@ -70,7 +70,7 @@ class StartDateBox extends React.Component {
     );
 
     const reply = () => {
-      const ziriOpenCal = new SpeechSynthesisUtterance(`Whale then! Please select the start and end dates for your timeline.`);
+      const ziriOpenCal = new SpeechSynthesisUtterance('Whale then! Please select the start and end dates for your timeline.');
       window.speechSynthesis.speak(ziriOpenCal);
     };
     return (

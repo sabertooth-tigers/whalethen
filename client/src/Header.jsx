@@ -30,14 +30,18 @@ class Header extends React.Component {
         <div className="title">WhaleThen</div>
         <br />
         <div className="container timelineParams">
-          <div className="label">{timelineName}</div>
-          <div className="label">{timelineId}</div>
+          <div className="label">TimeLine Name:</div>
+          <div className="label timeLineName">{timelineName}</div>
+          <div className="label">TimeLineId:</div>
+          <div className="label timeLineId">/{timelineId}</div>
           <MuiThemeProvider>
             <CopyToClipboard
               onCopy={this.onCopy}
-              text={`http://localhost:3002/#/${timelineId}`}
+              text={`${window.location.href.slice(0, 24)}${timelineId}`}
             >
               {/*
+              TO MAKE TEXT WORK, get total chars from 0-end of heroku link local0-24
+              `${window.location.href.slice(0, 24)}${timelineId}`
               window.location.href is another option to copy the
               full url. However if someone who was
               sent the url, IE a third person, attempts to copy
@@ -53,6 +57,7 @@ class Header extends React.Component {
               />
             </CopyToClipboard>
           </MuiThemeProvider>
+
           <TimelineName {...this.props} />
           <StartDateBox {...this.props} />
           <EndDateBox {...this.props} />
