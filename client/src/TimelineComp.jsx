@@ -10,7 +10,7 @@ import Home from './Home';
 class TimelineComp extends React.Component {
   constructor(props) {
     super(props);
-    // console.log(window.location.href);
+    // console.log(window.location.href.slice(0, 24));
     const {
       getTrip,
       timelineId,

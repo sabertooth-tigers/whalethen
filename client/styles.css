@@ -775,3 +775,13 @@ input {
 .copy-button {
   height: 12px;
 }
+
+.timeLineId {
+  text-decoration: underline;
+  font-weight: 800;
+}
+
+.timeLineName {
+  font-weight: 800;
+  text-decoration: underline;
+}
